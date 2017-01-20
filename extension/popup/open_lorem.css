@@ -1,0 +1,17 @@
+.number {
+  width: 40px;
+}
+
+.output {
+  width: 780px;
+  height: 250px;
+  resize: none;
+}
+
+.baconipsum {
+  display: block;
+}
+
+.otherprovider {
+  display: none;
+}

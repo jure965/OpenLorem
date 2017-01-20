@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="open_lorem.css"/>
+  </head>
+  <body>
+    <div>
+      <h1>OpenLorem</h1>
+      <p>Lorem Ipsum generator web extension</p>
+	  <p>
+        <label for="provider">Provider:</label>
+	    <select id="provider">
+	      <option value="baconipsum">Bacon Ipsum</option>
+	    </select>
+	  </p>
+	</div>
+	<div class="baconipsum provider" id="baconipsum">
+	  <label for="type">Type:</label>
+	  <select id="type" name="type" class="type">
+	    <option value="all-meat">All meat</option>
+		<option value="meat-and-filler">Meat and filler</option>
+	  </select>
+	  <label for="number">Quantity</label>
+	  <input id="number" class="number" type="text" value="5">
+	  <select id="dtype" name="dtype" class="dtype">
+	    <option value="paras">Paragraphs</option>
+	    <option value="sentences">Sentences</option>
+	  </select>
+	  <input type="checkbox" class="start-with-lorem" name="start-with-lorem" value="start-with-lorem" id="start-with-lorem"><label for="start-with-lorem">Start with lorem</label>
+	  <label for="format">Format:</label>
+	  <select id="format" name="format" class="format">
+	    <option value="text">Text</option>
+	    <option value="json">JSON</option>
+	    <option value="html">HTML</option>
+      </select>
+	  <button class="get" type="button">Get</button>
+	</div>
+	<div class="otherprovider provider">
+	here reside inputs for other providers
+	</div>
+	<div>
+	  <textarea id="output" class="output"></textarea>
+	</div>
+    <script src="open_lorem.js"></script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+
+  "manifest_version": 2,
+  "name": "OpenLorem",
+  "version": "0.1",
+
+  "description": "Generates Lorem Ipsum text to your needs.",
+
+  "icons": {
+    "32": "icons/ol-32.png",
+    "48": "icons/ol-48.png",
+	"96": "icons/ol-96.png"
+  },
+
+  "browser_action": {
+    "default_icon": "icons/ol-32.png",
+    "default_title": "OpenLorem",
+    "default_popup": "popup/open_lorem.html"
+  }
+}
