@@ -1,17 +1,44 @@
+html, body {
+	font-family: Arial, Helvetica, sans-serif;
+	width: 780px;
+	height: 580px;
+	margin: 0;
+	padding: 0;
+}
+
+.left {
+	float: left;
+	width: 240px;
+	height: 570px;
+	padding: 5px;
+}
+
+.right {
+	float: left;
+	width: 530px;
+	height: 580px;
+}
+
 .number {
-  width: 40px;
+	width: 40px;
+}
+
+.get {
+	width: 75px;
 }
 
 .output {
-  width: 780px;
-  height: 250px;
-  resize: none;
+	width: 528px;
+	height: 578px;
+	resize: none;
+	padding: 0px;
+	margin: 0px;
 }
 
 .baconipsum {
-  display: block;
+	display: block;
 }
 
-.otherprovider {
-  display: none;
+.loripsum {
+	display: none;
 }

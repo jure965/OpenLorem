@@ -1,47 +1,95 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="open_lorem.css"/>
-  </head>
-  <body>
-    <div>
-      <h1>OpenLorem</h1>
-      <p>Lorem Ipsum generator web extension</p>
-	  <p>
-        <label for="provider">Provider:</label>
-	    <select id="provider">
-	      <option value="baconipsum">Bacon Ipsum</option>
-	    </select>
-	  </p>
-	</div>
-	<div class="baconipsum provider" id="baconipsum">
-	  <label for="type">Type:</label>
-	  <select id="type" name="type" class="type">
-	    <option value="all-meat">All meat</option>
-		<option value="meat-and-filler">Meat and filler</option>
-	  </select>
-	  <label for="number">Quantity</label>
-	  <input id="number" class="number" type="text" value="5">
-	  <select id="dtype" name="dtype" class="dtype">
-	    <option value="paras">Paragraphs</option>
-	    <option value="sentences">Sentences</option>
-	  </select>
-	  <input type="checkbox" class="start-with-lorem" name="start-with-lorem" value="start-with-lorem" id="start-with-lorem"><label for="start-with-lorem">Start with lorem</label>
-	  <label for="format">Format:</label>
-	  <select id="format" name="format" class="format">
-	    <option value="text">Text</option>
-	    <option value="json">JSON</option>
-	    <option value="html">HTML</option>
-      </select>
-	  <button class="get" type="button">Get</button>
-	</div>
-	<div class="otherprovider provider">
-	here reside inputs for other providers
-	</div>
-	<div>
-	  <textarea id="output" class="output"></textarea>
-	</div>
-    <script src="open_lorem.js"></script>
-  </body>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="open_lorem.css"/>
+	</head>
+	<body>
+		<div class="left">
+			<div>
+				<h1>OpenLorem</h1>
+				<label for="provider">Provider:</label>
+				<select id="provider">
+					<option value="baconipsum">Bacon Ipsum</option>
+					<option value="loripsum">Loripsum.net</option>
+				</select>
+			</div>
+			<div class="baconipsum provider" id="baconipsum">
+				<p>
+					<label for="type">Type:</label>
+					<select id="type" name="type" class="type">
+						<option value="all-meat">All meat</option>
+						<option value="meat-and-filler">Meat and filler</option>
+					</select>
+				</p>
+				<p>
+					<label for="number">Quantity:</label>
+					<input id="number" class="number" type="text" value="5">
+					<select id="dtype" name="dtype" class="dtype">
+						<option value="paras">Paragraphs</option>
+						<option value="sentences">Sentences</option>
+					</select>
+				</p>
+				<p>
+					<label for="format">Format:</label>
+					<select id="format" name="format" class="format">
+						<option value="text">Text</option>
+						<option value="json">JSON</option>
+						<option value="html">HTML</option>
+					</select>
+				</p>
+				<p>
+					<input type="checkbox" class="start-with-lorem" name="start-with-lorem" value="start-with-lorem" id="start-with-lorem">
+					<label for="start-with-lorem">Start with lorem</label>
+				</p>
+				<p>
+					<button class="get" type="button">Get</button>
+				</p>
+			</div>
+			<div class="loripsum provider" id="loripsum">
+				<p>
+					<label for="number">Quantity:</label>
+					<input id="number" class="number" type="text" value="5">
+				</p>
+				<p>
+					<label for="length">Paragraph length:</label>
+					<select id="length" name="length" class="length">
+						<option value="short">short</option>
+						<option value="medium">medium</option>
+						<option value="long">long</option>
+						<option value="verylong">very long</option>
+					</select>
+				</p>
+				<input type="checkbox" class="decorate" name="decorate" value="decorate" id="decorate">
+				<label for="decorate">Add &lt;b&gt; and &lt;i&gt; tags</label><br>
+				<input type="checkbox" class="link" name="link" value="link" id="link">
+				<label for="link">Add &lt;a&gt; tags</label><br>
+				<input type="checkbox" class="ul" name="ul" value="ul" id="ul">
+				<label for="ul">Add unordered lists</label><br>
+				<input type="checkbox" class="ol" name="ol" value="ol" id="ol">
+				<label for="ol">Add numbered lists</label><br>
+				<input type="checkbox" class="dl" name="dl" value="dl" id="dl">
+				<label for="dl">Add description lists</label><br>
+				<input type="checkbox" class="bq" name="bq" value="bq" id="bq">
+				<label for="bq">Add blockquotes</label><br>
+				<input type="checkbox" class="code" name="code" value="code" id="code">
+				<label for="code">Add &lt;code&gt; and &lt;pre&gt; tags</label><br>
+				<input type="checkbox" class="headers" name="headers" value="headers" id="headers">
+				<label for="headers">Add header tags</label><br>
+				<input type="checkbox" class="allcaps" name="allcaps" value="allcaps" id="allcaps">
+				<label for="allcaps">Use ALL CAPS</label><br>
+				<input type="checkbox" class="prude" name="prude" value="prude" id="prude">
+				<label for="prude">Prude version (family safe)</label><br>
+				<input type="checkbox" class="plaintext" name="plaintext" value="plaintext" id="plaintext">
+				<label for="plaintext">Plain text (no HTML)</label><br>
+				<p>
+					<button class="get" type="button">Get</button>
+				</p>
+			</div>
+		</div>
+		<div class="right">
+			<textarea id="output" class="output"></textarea>
+		</div>
+		<script src="open_lorem.js"></script>
+	</body>
 </html>
