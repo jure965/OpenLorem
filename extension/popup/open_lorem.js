@@ -1,5 +1,8 @@
 function setText(text) {
 	document.getElementById("output").innerHTML = text;
+	browser.storage.local.set({
+		loremtext: text
+	});
 }
 
 function changeProvider(provider) {
@@ -8,6 +11,17 @@ function changeProvider(provider) {
 		providers[i].style.display = "none";
 	}
 	document.querySelectorAll("." + provider)[0].style.display = "block";
+	browser.storage.local.set({
+		provider: provider
+	});
+	var sel = document.getElementById("provider");
+	var opts = sel.options;
+	for (var opt, j = 0; opt = opts[j]; j++) {
+		if (opt.value == provider) {
+			sel.selectedIndex = j;
+			break;
+		}
+	}
 }
 
 function httpGetAsync(theUrl, callback)
@@ -66,3 +80,12 @@ document.addEventListener("click", (e) => {
 		}
 	}
 });
+
+window.onload = function() {
+	browser.storage.local.get('provider').then((res) => {
+		if (res.provider) changeProvider(res.provider);
+	});
+	browser.storage.local.get('loremtext').then((res) => {
+		if (res.loremtext) setText(res.loremtext);
+	});
+}

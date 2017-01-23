@@ -18,6 +18,7 @@
 	"permissions": [
 		"https://baconipsum.com/api/*",
 		"http://loripsum.net/api/*",
-		"webRequest"
+		"webRequest",
+		"storage"
 	]
 }
