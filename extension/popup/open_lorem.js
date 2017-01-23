@@ -1,10 +1,3 @@
-function setText(text) {
-	document.getElementById("output").innerHTML = text;
-	browser.storage.local.set({
-		loremtext: text
-	});
-}
-
 function changeProvider(provider) {
 	var providers = document.querySelectorAll(".provider");
 	for (i = 0; i < providers.length; i++) {
@@ -24,8 +17,7 @@ function changeProvider(provider) {
 	}
 }
 
-function httpGetAsync(theUrl, callback)
-{
+function httpGetAsync(theUrl, callback) {
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function() { 
 		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) callback(xmlHttp.responseText);
@@ -34,100 +26,100 @@ function httpGetAsync(theUrl, callback)
 	xmlHttp.send(null);
 }
 
-function callBaconIpsum(type, dtype, number, start_with_lorem, format) {
-//	document.getElementById("output").innerHTML = url;
-	var url = "https://baconipsum.com/api/?type=" + type + "&" + dtype + "=" + number + "&start-with-lorem=" + start_with_lorem + "&format=" + format;
-	httpGetAsync(url, setText);
+function saveSettings(provider) {
+	if (provider == "loripsum") {
+		browser.storage.local.set({
+			loripsum: {
+				number: parseInt(document.querySelectorAll(".loripsum .number")[0].value),
+				length: document.querySelectorAll(".loripsum .length")[0].options[document.querySelectorAll(".loripsum .length")[0].selectedIndex].value,
+				decorate: document.querySelectorAll(".loripsum .decorate")[0].checked,
+				link: document.querySelectorAll(".loripsum .link")[0].checked,
+				ul: document.querySelectorAll(".loripsum .ul")[0].checked,
+				ol: document.querySelectorAll(".loripsum .ol")[0].checked,
+				dl: document.querySelectorAll(".loripsum .dl")[0].checked,
+				bq: document.querySelectorAll(".loripsum .bq")[0].checked,
+				code: document.querySelectorAll(".loripsum .code")[0].checked,
+				headers: document.querySelectorAll(".loripsum .headers")[0].checked,
+				allcaps: document.querySelectorAll(".loripsum .allcaps")[0].checked,
+				prude: document.querySelectorAll(".loripsum .prude")[0].checked,
+				plaintext: document.querySelectorAll(".loripsum .plaintext")[0].checked
+			}
+		});
+	}
+	else if (provider == "baconipsum") {
+		browser.storage.local.set({
+			baconipsum: {
+				type: document.querySelectorAll(".baconipsum .type")[0].options[document.querySelectorAll(".baconipsum .type")[0].selectedIndex].value,
+				dtype: document.querySelectorAll(".baconipsum .dtype")[0].options[document.querySelectorAll(".baconipsum .dtype")[0].selectedIndex].value,
+				number: parseInt(document.querySelectorAll(".baconipsum .number")[0].value),
+				start_with_lorem: document.querySelectorAll(".baconipsum .start-with-lorem")[0].checked,
+				format: document.querySelectorAll(".baconipsum .format")[0].options[document.querySelectorAll(".baconipsum .format")[0].selectedIndex].value
+			}
+		});
+	}
 }
 
-function callLoripsum(url) {
-//	document.getElementById("output").innerHTML = url;
-	httpGetAsync(url, setText);
+function setText(text) {
+	document.getElementById("output").innerHTML = text;
+	browser.storage.local.set({
+		loremtext: text
+	});
+}
+
+function getText(provider) {
+	saveSettings(provider);
+	if (provider == "baconipsum") {
+		browser.storage.local.get("baconipsum").then((res) => {
+			var url = "https://baconipsum.com/api/?";
+			url += "type=" + res.baconipsum.type + "&";
+			url += res.baconipsum.dtype + "=" + res.baconipsum.number + "&";
+			url += "start-with-lorem=" + res.baconipsum.start_with_lorem + "&";
+			url += "format=" + res.baconipsum.format;
+			httpGetAsync(url, setText);
+		});
+	}
+	else if (provider == "loripsum") {
+		browser.storage.local.get("loripsum").then((res) => {
+			var url = "http://loripsum.net/api";
+			url += "/" + res.loripsum.number;
+			url += "/" + res.loripsum.length;
+			url += res.loripsum.decorate ? "/decorate" : "";
+			url += res.loripsum.link ? "/link" : "";
+			url += res.loripsum.ul ? "/ul" : "";
+			url += res.loripsum.ol ? "/ol" : "";
+			url += res.loripsum.dl ? "/dl" : "";
+			url += res.loripsum.bq ? "/bq" : "";
+			url += res.loripsum.code ? "/code" : "";
+			url += res.loripsum.headers ? "/headers" : "";
+			url += res.loripsum.allcaps ? "/allcaps" : "";
+			url += res.loripsum.prude ? "/prude" : "";
+			url += res.loripsum.plaintext ? "/plaintext" : "";
+			httpGetAsync(url, setText);
+		});
+	}
 }
 
 document.addEventListener("change", function() {
 	var provider = document.getElementById("provider").options[document.getElementById("provider").selectedIndex].value;
 	changeProvider(provider);
+	saveSettings(provider);
 });
 
 document.addEventListener("click", (e) => {
 	if (e.target.classList.contains("get")) {
 		var provider = document.getElementById("provider").options[document.getElementById("provider").selectedIndex].value;
-		if (provider == "baconipsum") {
-			var type = document.querySelectorAll(".baconipsum .type")[0].options[document.querySelectorAll(".baconipsum .type")[0].selectedIndex].value;
-			var dtype = document.querySelectorAll(".baconipsum .dtype")[0].options[document.querySelectorAll(".baconipsum .dtype")[0].selectedIndex].value;
-			var number = parseInt(document.querySelectorAll(".baconipsum .number")[0].value);
-			var start_with_lorem = document.querySelectorAll(".baconipsum .start-with-lorem")[0].checked ? "1" : "0";
-			var format = document.querySelectorAll(".baconipsum .format")[0].options[document.querySelectorAll(".baconipsum .format")[0].selectedIndex].value;
-			callBaconIpsum(type, dtype, number, start_with_lorem, format);
-			browser.storage.local.set({
-				baconipsum: {
-					type: type,
-					dtype: dtype,
-					number: number,
-					start_with_lorem: start_with_lorem,
-					format: format
-				}
-			});
-		}
-		if (provider == "loripsum") {
-			var url = "http://loripsum.net/api";
-			var number = parseInt(document.querySelectorAll(".loripsum .number")[0].value);
-			var length = document.querySelectorAll(".loripsum .length")[0].options[document.querySelectorAll(".loripsum .length")[0].selectedIndex].value;
-			var decorate = document.querySelectorAll(".loripsum .decorate")[0].checked;
-			var link = document.querySelectorAll(".loripsum .link")[0].checked
-			var ul = document.querySelectorAll(".loripsum .ul")[0].checked
-			var ol = document.querySelectorAll(".loripsum .ol")[0].checked
-			var dl = document.querySelectorAll(".loripsum .dl")[0].checked
-			var bq = document.querySelectorAll(".loripsum .bq")[0].checked
-			var code = document.querySelectorAll(".loripsum .code")[0].checked
-			var headers = document.querySelectorAll(".loripsum .headers")[0].checked
-			var allcaps = document.querySelectorAll(".loripsum .allcaps")[0].checked
-			var prude = document.querySelectorAll(".loripsum .prude")[0].checked
-			var plaintext = document.querySelectorAll(".loripsum .plaintext")[0].checked
-			url += "/" + number;
-			url += "/" + length;
-			url += decorate ? "/decorate" : "";
-			url += link ? "/link" : "";
-			url += ul ? "/ul" : "";
-			url += ol ? "/ol" : "";
-			url += dl ? "/dl" : "";
-			url += bq ? "/bq" : "";
-			url += code ? "/code" : "";
-			url += headers ? "/headers" : "";
-			url += allcaps ? "/allcaps" : "";
-			url += prude ? "/prude" : "";
-			url += plaintext ? "/plaintext" : "";
-			callLoripsum(url);
-			browser.storage.local.set({
-				loripsum: {
-					number: number,
-					length: length,
-					decorate: decorate,
-					link: link,
-					ul: ul,
-					ol: ol,
-					dl: dl,
-					bq: bq,
-					code: code,
-					headers: headers,
-					allcaps: allcaps,
-					prude: prude,
-					plaintext: plaintext
-				}
-			});
-		}
+		getText(provider);
 	}
 });
 
 window.onload = function() {
-	browser.storage.local.get('provider').then((res) => {
+	browser.storage.local.get("provider").then((res) => {
 		if (res.provider) changeProvider(res.provider);
 	});
-	browser.storage.local.get('loremtext').then((res) => {
+	browser.storage.local.get("loremtext").then((res) => {
 		if (res.loremtext) setText(res.loremtext);
 	});
-	browser.storage.local.get('loripsum').then((res) => {
+	browser.storage.local.get("loripsum").then((res) => {
 		if (res.loripsum) {
 			//textbox number
 			document.querySelectorAll(".loripsum .number")[0].value = res.loripsum.number;
