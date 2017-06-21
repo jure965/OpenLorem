@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="open_lorem.css"/>
-	</head>
-	<body>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="open_lorem.css" />
+</head>
+
+<body>
+	<div class="box box-small">
 		<div class="left">
 			<div>
 				<h1>OpenLorem</h1>
 				<label for="provider">Provider:</label>
-				<select id="provider">
+				<select id="provider" class="form-control">
 					<option value="baconipsum">Bacon Ipsum</option>
 					<option value="loripsum">Loripsum.net</option>
 				</select>
 			</div>
+			<hr />
 			<div class="baconipsum provider" id="baconipsum">
 				<p>
 					<label for="type">Type:</label>
-					<select id="type" name="type" class="type">
+					<select id="type" name="type" class="form-control">
 						<option value="all-meat">All meat</option>
 						<option value="meat-and-filler">Meat and filler</option>
 					</select>
 				</p>
 				<p>
 					<label for="number">Quantity:</label>
-					<input id="number" class="number" type="text" value="5">
-					<select id="dtype" name="dtype" class="dtype">
+					<input id="number" class="form-control number" type="text" value="5">
+					<select id="dtype" name="dtype" class="form-control">
 						<option value="paras">Paragraphs</option>
 						<option value="sentences">Sentences</option>
 					</select>
 				</p>
 				<p>
 					<label for="format">Format:</label>
-					<select id="format" name="format" class="format">
+					<select id="format" name="format" class="form-control">
 						<option value="text">Text</option>
 						<option value="json">JSON</option>
 						<option value="html">HTML</option>
@@ -43,7 +47,7 @@
 					<label for="start-with-lorem">Start with lorem</label>
 				</p>
 				<p>
-					<button class="get" type="button">Get</button>
+					<button class="get btn btn-primary" type="button">Get</button>
 				</p>
 			</div>
 			<div class="loripsum provider" id="loripsum">
@@ -83,13 +87,17 @@
 				<input type="checkbox" class="plaintext" name="plaintext" value="plaintext" id="plaintext">
 				<label for="plaintext">Plain text (no HTML)</label><br>
 				<p>
-					<button class="get" type="button">Get</button>
+					<button class="get btn btn-primary" type="button">Get</button>
 				</p>
 			</div>
 		</div>
+	</div>
+	<div class="box box-large">
 		<div class="right">
 			<textarea id="output" class="output"></textarea>
 		</div>
-		<script src="open_lorem.js"></script>
-	</body>
+	</div>
+	<script src="open_lorem.js"></script>
+</body>
+
 </html>
