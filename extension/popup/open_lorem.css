@@ -9,30 +9,77 @@ html, body {
 	box-sizing: border-box;
 	
 }
+
+/* BASIC "box" grid
+	Sizes:
+		small:	1/3 width
+		medium: 1/2 width
+		large:	2/3 width
+		full: 	1/1 width
+
+	Possible combinations:
+		- small + small + small
+		- small + large
+		- large + small
+		- medium + medium
+		- full
+ */
+.row {
+	margin-left: -3px;
+	margin-right: -3px;
+}
+.row::before, .row:after {
+	display: table;
+	content: " ";
+}
+.row:after {
+	clear: both;
+}
+
 .box {
 	float: left;
+	padding-left: 3px;
+	padding-right: 3px;
 }
 .box.box-small {
 	width: 33.333%;
-}
-
-.box.box-large {
-	width: 66.667%;
 }
 .box.box-medium {
 	width: 50%;
 }
 
-.btn.btn-primary {
-	background-color: #0096dd;
+.box.box-large {
+	width: 66.667%;
+}
+.box.box-full {
+	width: 100%;
+}
+/* end grid */
+/* 	Buttons 
+	Each button needs .btn class, to define sizes etc,
+	and btn-[option] to define its color
+*/
+.btn {
 	padding: 8px 20px;
-	border: 1px solid #0096dd;
-	color: #fff;
 	cursor: pointer;
 	font-size: 16px;
+	min-width: 100px;
 }
+.btn.btn-primary {
+	background-color: #0096dd;
+	border: 1px solid #0096dd;
+	color: #fff;
+}
+
 .btn.btn-primary:hover {
 	background-color: #008acb;
+	border: 1px solid #008acb;
+}
+
+/* Form elements */
+
+.form-group {
+	margin-bottom: 5px;
 }
 
 .form-control {
@@ -44,6 +91,11 @@ html, body {
 	background-color: #fff;
 	background-image: none;
 	border: 1px solid #ccc;
+	width: 100%;
+}
+
+label.control-label {
+	margin-top:6px;
 }
 
 select.form-control {
@@ -52,6 +104,17 @@ select.form-control {
 	background-color: #fff;
     background: #fff url('../icons/select-arrow.png') no-repeat 98% 0;
 	padding-right: 14px;
+}
+
+/* end form */
+
+h1 {
+	text-align: center;
+	margin-top: 0px;
+	margin-bottom: 30px;
+}
+.text-center {
+	text-align: center;
 }
 
 hr {
@@ -64,9 +127,7 @@ hr {
 }
 
 .left {
-	float: left;
-	width: 100%;
-	height: 570px;
+	height: 100%;
 	padding: 13px 10px;
 	background-color: #ebebeb;
 	border-right: 1px solid #c1c1c1;
@@ -75,17 +136,16 @@ hr {
 
 .right {
 	width: 100%;
-	height: 570px;
+	height: 580px;
 }
 
 .number {
-	width: 40px;
 }
 
 
 .output {
 	width: 100%;
-	height: 568px;
+	height: 100%;
 	padding: 6px 12px;
 	margin: 0px;
 	color: #444;
