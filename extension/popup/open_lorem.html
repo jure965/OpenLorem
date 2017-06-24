@@ -4,6 +4,12 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="open_lorem.css" />
+	<script src="scripts/utils.js"></script>
+	<script src="scripts/settings.js"></script>
+	<script src="scripts/loader.js"></script>
+	<script src="scripts/loripsum.provider.js"></script>
+	<script src="scripts/baconipsum.provider.js"></script>
+	<script src="scripts/test.provider.js"></script>
 </head>
 
 <body>
@@ -13,17 +19,16 @@
 			<label for="provider" class="box box-small control-label">Provider</label>
 			<div class="box box-large">
 				<select id="provider" class="form-control">
-					<option value="baconipsum">Bacon Ipsum</option>
-					<option value="loripsum">Loripsum.net</option>
 				</select>
 			</div>
 		</div>
 		<hr />
+		<!-- baconipsum -->
 		<div class="baconipsum provider" id="baconipsum">
 			<div class="row form-group">
-				<label for="type" class="box box-small control-label">Type</label>
+				<label class="box box-small control-label">Type</label>
 				<div class="box box-large">
-					<select id="type" name="type" class="form-control">
+					<select name="type" class="form-control">
 						<option value="all-meat">All meat</option>
 						<option value="meat-and-filler">Meat and filler</option>
 					</select>
@@ -34,10 +39,10 @@
 				<div class="box box-large">
 					<div class="row">
 						<div class="box box-small">
-							<input id="number" class="form-control number" type="text" value="5">
+							<input class="form-control number" type="text" name="block-length" value="5">
 						</div>
 						<div class="box box-large">
-							<select id="dtype" name="dtype" class="form-control">
+							<select name="block-type" class="form-control">
 								<option value="paras">Paragraphs</option>
 								<option value="sentences">Sentences</option>
 							</select>
@@ -56,18 +61,16 @@
 				</div>
 			</div>
 			<p>
-				<input type="checkbox" class="start-with-lorem" name="start-with-lorem" value="start-with-lorem" id="start-with-lorem">
+				<input type="checkbox" class="start-with-lorem" name="start-with-lorem" id="start-with-lorem">
 				<label for="start-with-lorem">Start with lorem</label>
 			</p>
-			<p class="text-center">
-				<button class="get btn btn-primary" type="button">Get</button>
-			</p>
 		</div>
+		<!-- /baconipsum -->
 		<div class="loripsum provider" id="loripsum">
 			<div class="row form-group">
 				<label for="number" class="box box-small control-label">Quantity</label>
 				<div class="box box-large">
-					<input id="number" class="number form-control" type="text" value="5">
+					<input id="number" class="number form-control" type="text" value="5" name="paragraphs">
 				</div>
 			</div>
 			<div class="row form-group">
@@ -125,9 +128,9 @@
 				<input type="checkbox" class="plaintext" name="plaintext" value="plaintext" id="plaintext">
 				<label for="plaintext">Plain text (no HTML)</label><br>
 			</div>
-			<div class="text-center">
-				<button class="get btn btn-primary" type="button">Get</button>
-			</div>
+		</div>
+		<div class="text-center">
+			<button class="get btn btn-primary" id="display" type="button">Display</button>
 		</div>
 	</div>
 	<div class="box box-large right">
