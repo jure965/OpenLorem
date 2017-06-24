@@ -103,7 +103,7 @@ select.form-control {
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	background-color: #fff;
-    background: #fff url('../icons/select-arrow.png') no-repeat 98% 0;
+    background: #fff url('images/select-arrow.png') no-repeat 98% 0;
 	padding-right: 14px;
 }
 
