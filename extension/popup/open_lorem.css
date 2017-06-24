@@ -157,10 +157,6 @@ hr {
 	overflow: auto;
 }
 
-.baconipsum {
-	display: none;
-}
-
-.loripsum {
+.hidden {
 	display: none;
 }

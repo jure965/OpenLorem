@@ -9,7 +9,8 @@
 	<script src="scripts/loader.js"></script>
 	<script src="scripts/loripsum.provider.js"></script>
 	<script src="scripts/baconipsum.provider.js"></script>
-	<script src="scripts/test.provider.js"></script>
+	<script src="scripts/dinoipsum.provider.js"></script>
+	<!-- <script src="scripts/example.provider.js"></script> -->
 </head>
 
 <body>
@@ -23,50 +24,8 @@
 			</div>
 		</div>
 		<hr />
-		<!-- baconipsum -->
-		<div class="baconipsum provider" id="baconipsum">
-			<div class="row form-group">
-				<label class="box box-small control-label">Type</label>
-				<div class="box box-large">
-					<select name="type" class="form-control">
-						<option value="all-meat">All meat</option>
-						<option value="meat-and-filler">Meat and filler</option>
-					</select>
-				</div>
-			</div>
-			<div class="row form-group">
-				<label for="number" class="box box-small control-label">Quantity</label>
-				<div class="box box-large">
-					<div class="row">
-						<div class="box box-small">
-							<input class="form-control number" type="text" name="block-length" value="5">
-						</div>
-						<div class="box box-large">
-							<select name="block-type" class="form-control">
-								<option value="paras">Paragraphs</option>
-								<option value="sentences">Sentences</option>
-							</select>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row form-group">
-				<label for="format" class="box box-small control-label">Format</label>
-				<div class="box box-large">
-					<select id="format" name="format" class="form-control">
-						<option value="text">Text</option>
-						<option value="json">JSON</option>
-						<option value="html">HTML</option>
-					</select>
-				</div>
-			</div>
-			<p>
-				<input type="checkbox" class="start-with-lorem" name="start-with-lorem" id="start-with-lorem">
-				<label for="start-with-lorem">Start with lorem</label>
-			</p>
-		</div>
-		<!-- /baconipsum -->
-		<div class="loripsum provider" id="loripsum">
+		<!-- loripsum -->
+		<div class="hidden" id="loripsum">
 			<div class="row form-group">
 				<label for="number" class="box box-small control-label">Quantity</label>
 				<div class="box box-large">
@@ -129,6 +88,80 @@
 				<label for="plaintext">Plain text (no HTML)</label><br>
 			</div>
 		</div>
+		<!-- baconipsum -->
+		<div class="hidden" id="baconipsum">
+			<div class="row form-group">
+				<label class="box box-small control-label">Type</label>
+				<div class="box box-large">
+					<select name="type" class="form-control">
+						<option value="all-meat">All meat</option>
+						<option value="meat-and-filler">Meat and filler</option>
+					</select>
+				</div>
+			</div>
+			<div class="row form-group">
+				<label for="number" class="box box-small control-label">Quantity</label>
+				<div class="box box-large">
+					<div class="row">
+						<div class="box box-small">
+							<input class="form-control number" type="text" name="block-length" value="5">
+						</div>
+						<div class="box box-large">
+							<select name="block-type" class="form-control">
+								<option value="paras">Paragraphs</option>
+								<option value="sentences">Sentences</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<label for="format" class="box box-small control-label">Format</label>
+				<div class="box box-large">
+					<select id="format" name="format" class="form-control">
+						<option value="text">Text</option>
+						<option value="json">JSON</option>
+						<option value="html">HTML</option>
+					</select>
+				</div>
+			</div>
+			<p>
+				<input type="checkbox" class="start-with-lorem" name="start-with-lorem" id="start-with-lorem">
+				<label for="start-with-lorem">Start with lorem</label>
+			</p>
+		</div>
+		<!-- end baconipsum -->
+
+		<!-- dino ipsum -->
+		<div id="dinoipsum" class="hidden">
+			<div class="row form-group">
+				<label for="number" class="box box-medium control-label">Words</label>
+				<div class="box box-medium">
+					<input class="form-control number" type="text" name="words" value="15">
+				</div>
+			</div>
+			<div class="row form-group">
+				<label for="number" class="box box-medium control-label">Paragraphs</label>
+				<div class="box box-medium">
+					<input class="form-control number" type="text" name="paragraphs" value="3">
+				</div>
+			</div>
+			<div class="row form-group">
+				<label for="format" class="box box-medium control-label">Format</label>
+				<div class="box box-medium">
+					<select id="format" name="format" class="form-control">
+						<option value="text">Text</option>
+						<option value="json">JSON</option>
+						<option value="html">HTML</option>
+					</select>
+				</div>
+			</div>
+
+		</div>
+		<!-- end dino ipsum -->
+		
+		<!-- add another provider here -->
+
 		<div class="text-center">
 			<button class="get btn btn-primary" id="display" type="button">Display</button>
 		</div>

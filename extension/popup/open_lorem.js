@@ -2,8 +2,10 @@ let currentProvider = "loripsum";
 
 let providers = [
 	loripsum,
-	baconipsum
-]
+	baconipsum,
+	dinoipsum,
+	//example
+];
 
 window.onload = function() {
 
@@ -25,7 +27,7 @@ window.onload = function() {
 	// Load previously displayed text
 	loadOldText();
 
-}
+};
 
 function loadOldText() {
 	var text = localStorage.getItem("lastText");
