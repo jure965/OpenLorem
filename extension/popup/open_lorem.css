@@ -4,7 +4,7 @@ html, body {
 	height: 580px;
 	margin: 0;
 	padding: 0;
-	outline: 1px solid black;
+	/* outline: 1px solid black; */
 }
 * {
 	box-sizing: border-box;
