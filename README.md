@@ -5,15 +5,16 @@ API client for Lorem Ipsum providers as WebExtension.
 ## TODO
 
 - make beautiful icons/logo
-- make beautiful UI
 - add more providers
 - add copy to clipboard functionality
 - add insert into page functionality
+- ~~make beautiful UI~~
 
 ## Currently supported Lorem Ipsum providers
 
 - [Bacon Ipsum](https://baconipsum.com/json-api/)
 - [Loripsum.net](http://loripsum.net/)
+- [Dino ipsum](http://dinoipsum.herokuapp.com/)
 
 ## Where do I get the extension?
 
