@@ -4,7 +4,7 @@ html, body {
 	height: 580px;
 	margin: 0;
 	padding: 0;
-	outline: 1px solid black;
+	/* outline: 1px solid black; */
 }
 * {
 	box-sizing: border-box;
@@ -41,6 +41,10 @@ html, body {
 	float: left;
 	padding-left: 3px;
 	padding-right: 3px;
+}
+.box.no-gutter {
+	padding-left: 0;
+	padding-right: 0;
 }
 .box.box-small {
 	width: 33.333%;
