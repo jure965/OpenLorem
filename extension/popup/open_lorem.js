@@ -34,7 +34,8 @@ window.onload = function() {
 function loadOldText() {
 	var text = localStorage.getItem("lastText");
 	if (!text)
-		return;
+		settings.saveProvider(currentProvider);
+		loader.load();
 
 	loader.fillOutput(text);
 }
