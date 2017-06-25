@@ -15,7 +15,9 @@ window.onload = function() {
 
 	// Provider <select> change listener
 	document.getElementById("provider").onchange = function() {
+		settings.saveProvider(currentProvider);
 		changeProvider(this.value);
+		loader.load();
 	};
 
 	// Display <button> click listener
@@ -32,7 +34,8 @@ window.onload = function() {
 function loadOldText() {
 	var text = localStorage.getItem("lastText");
 	if (!text)
-		return;
+		settings.saveProvider(currentProvider);
+		loader.load();
 
 	loader.fillOutput(text);
 }

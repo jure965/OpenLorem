@@ -42,6 +42,10 @@ html, body {
 	padding-left: 3px;
 	padding-right: 3px;
 }
+.box.no-gutter {
+	padding-left: 0;
+	padding-right: 0;
+}
 .box.box-small {
 	width: 33.333%;
 }
