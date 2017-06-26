@@ -13,6 +13,9 @@ window.onload = function() {
 
 	populateProviders();
 
+	// Load previously displayed text
+	loadOldText();
+
 	// Provider <select> change listener
 	document.getElementById("provider").onchange = function() {
 		settings.saveProvider(currentProvider);
@@ -26,8 +29,24 @@ window.onload = function() {
 		loader.load();
 	};
 
-	// Load previously displayed text
-	loadOldText();
+	/* overlay hiding */
+	for (let overlay of document.getElementsByClassName("overlay")) {
+		overlay.onclick = function(e) {
+			if(e.target == this) {
+				this.classList.add("hidden");
+			}
+		};
+	}
+
+	for (let close of document.getElementsByClassName("close")) {
+		close.onclick = function() {
+			this.parentElement.parentElement.classList.add("hidden");
+		};
+	}
+
+	document.getElementById("info-button").onclick = function() {
+		document.getElementById(this.dataset.target).classList.remove("hidden");
+	};
 
 };
 

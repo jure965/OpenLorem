@@ -5,6 +5,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	/* outline: 1px solid black; */
+	position: relative;
 }
 * {
 	box-sizing: border-box;
@@ -161,6 +162,93 @@ hr {
 	overflow: auto;
 }
 
-.hidden {
+.provider.hidden {
 	display: none;
+}
+
+#info-button {
+	position: absolute;
+	bottom: 5px;
+	left: 7px;
+	width: 34px;
+	height: 34px;
+	background-color: #bababa;
+	padding: 3px;
+	font-size: 25px;
+	font-weight: bold;
+	color: #fff;
+	border-radius: 17px;
+	text-align: center;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+#info-button:hover {
+	background-color: #aaa;
+}
+
+.overlay {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(33, 33, 33, 0.3);
+	position: absolute;
+	top: 0;
+	left: -0;
+	transition: background-color 0.2s ease-out, height 0s ease 0s;
+	overflow: hidden;
+	will-change: background-color, height;
+}
+
+.overlay.hidden {
+	background-color: rgba(33, 33, 33, 0);
+	height: 0;
+	transition: background-color 0.2s ease-out, height 0s ease 0.2s;
+}
+
+.overlay > .overlay-content {
+	position: absolute;
+	width: 600px;
+	height: 100%;
+	background-color: #fbfbfb;
+	padding: 10px;
+	transition: left 0.5s ease 0s;
+	will-change: left, transition;
+}
+
+.overlay.hidden > .overlay-content {
+	left: -600px;
+}
+
+.overlay:not(.hidden) > .overlay-content {
+	left: 0;
+}
+
+.overlay > .overlay-content:before {
+	display: table;
+	content: ' ';
+}
+.overlay > .overlay-content:after {
+	clear: both;
+	display: table;
+	content: ' ';
+}
+
+.overlay-content > .close {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	font-size: 21px;
+	opacity: 0.2;
+	font-weight: 700;
+	background-color: transparent;
+	border: 0;
+	cursor: pointer;
+}
+.overlay-content > .close:hover {
+	opacity: 0.6;
+}
+
+@keyframes slide
+{
+	from {left: -600px;}
+	to {left: 0;}
 }
