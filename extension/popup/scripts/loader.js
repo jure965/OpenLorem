@@ -20,7 +20,7 @@ var loader = function() {
             httpGetAsync(url, loader.fillOutput);
         },
         fillOutput: function(text) {
-            document.getElementById("output").innerHTML = text;
+            document.getElementById("output").value = text;
             localStorage.setItem("lastText", text);
         }
     };
