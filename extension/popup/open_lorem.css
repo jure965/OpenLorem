@@ -114,11 +114,25 @@ select.form-control {
 
 /* end form */
 
+a {
+	color: #0066cc;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
 h1 {
 	text-align: center;
 	margin-top: 0px;
 	margin-bottom: 30px;
 }
+
+p {
+    margin: 0 0 10px;
+}
+
 .text-center {
 	text-align: center;
 }
@@ -144,10 +158,6 @@ hr {
 	width: 100%;
 	height: 580px;
 }
-
-.number {
-}
-
 
 .output {
 	width: 100%;
