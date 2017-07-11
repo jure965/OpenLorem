@@ -25,7 +25,7 @@
 		</div>
 		<hr />
 		<!-- loripsum -->
-		<div class="hidden" id="loripsum">
+		<div class="provider hidden" id="loripsum">
 			<div class="row form-group">
 				<label for="number" class="box box-small control-label">Quantity</label>
 				<div class="box box-large">
@@ -89,7 +89,7 @@
 			</div>
 		</div>
 		<!-- baconipsum -->
-		<div class="hidden" id="baconipsum">
+		<div class="provider hidden" id="baconipsum">
 			<div class="row form-group">
 				<label class="box box-small control-label">Type</label>
 				<div class="box box-large">
@@ -133,7 +133,7 @@
 		<!-- end baconipsum -->
 
 		<!-- dino ipsum -->
-		<div id="dinoipsum" class="hidden">
+		<div class="provider hidden" id="dinoipsum">
 			<div class="row form-group">
 				<label for="number" class="box box-medium control-label">Words</label>
 				<div class="box box-medium">
@@ -164,6 +164,18 @@
 
 		<div class="text-center">
 			<button class="get btn btn-primary" id="display" type="button">Display</button>
+		</div>
+
+		<div id="info-button" data-target="overlay-info">?</div>
+		<div class="overlay hidden" id="overlay-info">
+			<div class="overlay-content">
+				<button class="close">×</button>
+				<h2>About</h2>
+				<p>This extension exists to support web developers by providing <a href="http://www.lipsum.com/">Lorem Ipsum filler data</a> from various filler data providers.</p>
+				<p>Development was started by <a href="https://github.com/jure965">jure965</a> and then was completely rescripted and reworked by <a href="https://github.com/BojanKogoj">BojanKogoj</a>. We are a fresh IT manager and a web developer, who found out that we need a simple filler content provider as web extension. We looked at various extensions and all were really old plugin style or unsupported by the latest browsers. So we decided to create our own extension in a relatively new and cross platform WebExtension standard.</p>
+				<p>Since you are reading this, we hope you will find this extension useful. We would love to hear feedback from you. Please rate and comment this extension on <a href="https://addons.mozilla.org/firefox/addon/openlorem/">addons.mozilla.org</a><!-- or <a href="https://chrome.google.com/webstore/category/extensions">Chrome Web Store</a>.-->.</p>
+				<p>This extension is open source, its source is available on <a href="https://github.com/jure965/OpenLorem">GitHub</a>.</p>
+			</div>
 		</div>
 	</div>
 	<div class="box box-large right no-gutter">
