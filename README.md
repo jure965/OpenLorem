@@ -9,6 +9,7 @@ API client for Lorem Ipsum providers as WebExtension.
 - add copy to clipboard functionality
 - add insert into page functionality
 - ~~make beautiful UI~~
+- fix UI on Chrome
 
 ## Currently supported Lorem Ipsum providers
 
@@ -18,9 +19,9 @@ API client for Lorem Ipsum providers as WebExtension.
 
 ## Where do I get the extension?
 
-It will be published on AMO after it gets icons, nicer UI and more providers.
+It is published on [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/openlorem). Release for Chrome Web Store is comming soon&trade;
 
-For now you can clone it and [install](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Temporary_Installation_in_Firefox) it as temporary extension for [debugging](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Debugging) purposes in Firefox.
+If you want latest developement version, you can [clone/download](https://github.com/jure965/OpenLorem) and [install](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Temporary_Installation_in_Firefox) it as temporary extension for [debugging](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Debugging) purposes in Firefox.
 
 For Chrome you can go to [chrome://extensions/](chrome://extensions/), enable developer mode and click "load unpacked extension" then select folder with manifest.json file.
 
@@ -32,4 +33,11 @@ Yes!
 
 One way is to fork, make changes, commit and make pull request.
 
-You have your own Lorem Ipsum API? Let me know and I will add it.
+Another way is leaving feedback on [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/openlorem).
+
+You have your own Lorem Ipsum API? Let me know and we will add it.
+
+## Contributors
+
+Developement started by jure965.
+Completely reworked and rescripted by BojanKogoj.
