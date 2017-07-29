@@ -9,7 +9,7 @@ API client for Lorem Ipsum providers as WebExtension.
 - add copy to clipboard functionality
 - add insert into page functionality
 - ~~make beautiful UI~~
-- fix UI on Chrome
+- fix UI on Chrome (padding around body)
 
 ## Currently supported Lorem Ipsum providers
 
