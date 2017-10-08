@@ -7,9 +7,10 @@ API client for Lorem Ipsum providers as WebExtension.
 - make beautiful icons/logo
 - add more providers
 - add copy to clipboard functionality
-- add insert into page functionality
-- ~~make beautiful UI~~
+- ~~add insert into page functionality~~ [#8](https://github.com/jure965/OpenLorem/issues/8)
+- ~~make beautiful UI~~ [(PR)[https://github.com/jure965/OpenLorem/pull/1]]
 - fix UI on Chrome (padding around body)
+- Change UI/UX to [Photon Design System](http://design.firefox.com/photon/welcome.html) 
 
 ## Currently supported Lorem Ipsum providers
 
@@ -25,11 +26,7 @@ If you want latest developement version, you can [clone/download](https://github
 
 For Chrome you can go to [chrome://extensions/](chrome://extensions/), enable developer mode and click "load unpacked extension" then select folder with manifest.json file.
 
-## Should I contribute?
-
-Yes!
-
-## How?
+## How to contribute? 
 
 One way is to fork, make changes, commit and make pull request.
 
