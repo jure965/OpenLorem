@@ -20,6 +20,21 @@
 		"http://loripsum.net/api/*",
 		"http://dinoipsum.herokuapp.com/api/*",
 		"webRequest",
-		"storage"
-	]
+		"contextMenus",
+		"storage",
+		"tabs",
+		"activeTab"
+	],
+	"background": {
+		"scripts": ["popup/context_menu.js"]
+	},
+	"content_scripts": [
+		{
+		"matches": ["*://*/*"],
+		"js": ["popup/content_script.js"]
+		}
+	],
+	"options_ui": {
+		"page": "settings/options.html"
+	}
 }
