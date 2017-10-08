@@ -9,15 +9,6 @@ function onCreated() {
     }
 }
 
-/*
-Create context menu.
-*/
-
-browser.contextMenus.create({
-    id: "insert-ipsum",
-    title: "Insert Lorem Ipsum",
-    contexts: ["all"]
-}, onCreated);
 
 
 /*
@@ -32,3 +23,38 @@ browser.contextMenus.onClicked.addListener((info, tab) => {
         break;
     }
 });
+
+
+/*
+Create/remove context menu.
+*/
+let menuID;
+function toggleContextMenu(show) {
+    if (show) {
+        menuID = browser.contextMenus.create({
+            id: "insert-ipsum",
+            title: "Insert Lorem Ipsum",
+            contexts: ["all"]
+        }, onCreated);
+    } else {
+        browser.contextMenus.remove(menuID);
+    }
+}
+
+function onGot(item) {
+    toggleContextMenu(item.context_menu === true);
+    console.log("item", item);
+}
+
+function onError(error) {
+    console.log(`Error: ${error}`);
+}
+
+var getting = browser.storage.local.get("context_menu");
+getting.then(onGot, onError);
+
+function logStorageChange(e) {
+    toggleContextMenu(e.context_menu.newValue);
+}
+
+browser.storage.onChanged.addListener(logStorageChange);
