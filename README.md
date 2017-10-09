@@ -8,7 +8,7 @@ API client for Lorem Ipsum providers as WebExtension.
 - add more providers
 - add copy to clipboard functionality
 - ~~add insert into page functionality~~ [#8](https://github.com/jure965/OpenLorem/issues/8)
-- ~~make beautiful UI~~ [(PR)[https://github.com/jure965/OpenLorem/pull/1]]
+- ~~make beautiful UI~~ [[PR](https://github.com/jure965/OpenLorem/pull/1)]
 - fix UI on Chrome (padding around body)
 - Change UI/UX to [Photon Design System](http://design.firefox.com/photon/welcome.html) 
 
