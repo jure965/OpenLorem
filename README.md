@@ -20,7 +20,7 @@ API client for Lorem Ipsum providers as WebExtension.
 
 ## Where do I get the extension?
 
-It is published on [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/openlorem)and [Chrome Web Store](https://chrome.google.com/webstore/detail/openlorem/dlellbpcbpmgkjkalnjiomdapjgammfl).
+It is published on [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/openlorem) and [Chrome Web Store](https://chrome.google.com/webstore/detail/openlorem/dlellbpcbpmgkjkalnjiomdapjgammfl).
 
 If you want latest developement version, you can [clone/download](https://github.com/jure965/OpenLorem) and [install](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Temporary_Installation_in_Firefox) it as temporary extension for [debugging](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Debugging) purposes in Firefox.
 
