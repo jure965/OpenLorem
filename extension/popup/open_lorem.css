@@ -48,6 +48,9 @@ html, body {
 	padding-left: 0;
 	padding-right: 0;
 }
+.box.box-tiny {
+	width: 25%;
+}
 .box.box-small {
 	width: 33.333%;
 }
@@ -81,6 +84,13 @@ html, body {
 .btn.btn-primary:hover {
 	background-color: #008acb;
 	border: 1px solid #008acb;
+}
+
+.btn.btn-form {
+	height: 32px;
+	width: 100%;
+	min-width: 20px;
+	padding: 0;
 }
 
 /* Form elements */
@@ -264,4 +274,13 @@ hr {
 {
 	from {left: -600px;}
 	to {left: 0;}
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
