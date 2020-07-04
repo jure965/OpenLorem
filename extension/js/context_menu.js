@@ -9,21 +9,20 @@ function onCreated() {
     }
 }
 
-
-
 /*
 The click event listener, where we perform the appropriate action given the
 ID of the menu item that was clicked.
 */
-browser.contextMenus.onClicked.addListener((info, tab) => {
-    switch (info.menuItemId) {
+browser.contextMenus.onClicked.addListener((request, tab) => {
+    switch (request.menuItemId) {
 
         case "insert-ipsum":
-            chrome.tabs.sendMessage(tab.id, "getClickedEl");
+            chrome.tabs.sendMessage(tab.id, {
+                message: "get_clicked_element",
+            });
         break;
     }
 });
-
 
 /*
 Create/remove context menu.
