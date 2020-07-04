@@ -1,21 +1,32 @@
-var clickedElement = null;
+let clickedElement = null;
 
-document.addEventListener("mousedown", function(event){
+function setClickedElement(event) {
     //right click
-    if(event.button == 2) { 
+    if (event.button == 2) {
         clickedElement = event.target;
     }
-}, true);
+}
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    if(request == "getClickedEl") {
-        clickedElement.value = getLorem();
+document.addEventListener("mousedown", setClickedElement, true);
+
+// support for iframe elements
+window.addEventListener("load", () => {
+    let elementList = document.querySelectorAll("iframe");
+    elementList.forEach((element) => {
+        element.contentWindow.document.addEventListener("mousedown", setClickedElement, true);
+    });
+});
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    if (request == "getClickedEl") {
+        console.log(clickedElement);
+        clickedElement.innerHTML = getLorem();
         sendResponse({value: clickedElement.value});
     }
 });
 
 function getLorem() {
-    return data[Math.floor(Math.random() * data.length) ];
+    return data[Math.floor(Math.random() * data.length)];
 }
 
 var data = [
