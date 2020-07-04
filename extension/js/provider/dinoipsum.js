@@ -1,4 +1,4 @@
-import BaseProvider from "./base.provider";
+import BaseProvider from "./baseProvider";
 
 export const format = {
     JSON: "json",
@@ -6,29 +6,28 @@ export const format = {
     HTML: "html",
 };
 
-class Dinoipsum extends BaseProvider {
+export const defaultOptions = {
+    format: format.HTML,
+    words: 30,
+    paragraphs: 5,
+};
+
+export default class Dinoipsum extends BaseProvider {
     constructor() {
         super(
             "dinoipsum",
             "Dinoipsum",
             "http://dinoipsum.herokuapp.com/api/",
-            {
-                format: format.HTML,
-                words: 30,
-                paragraphs: 5,
-            }
+            defaultOptions
         );
     }
 
     generateURL() {
-        let url = this.baseURL + "?";
-        for (let key in this.options) {
-            if (this.options[key]) {
-                url += "&" + key + "=" + this.options[key];
-            }
-        }
-        return url;
+        return this.baseURL + "?" + this.options.entries
+            .map((key, value) => {
+                return value ? key + "=" + value : 0;
+            })
+            .filter(Boolean)
+            .join("&");
     }
 }
-
-export default Dinoipsum;

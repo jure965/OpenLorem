@@ -1,0 +1,9 @@
+{
+  "name": "openlorem",
+  "version": "0.5.0",
+  "dependencies": {},
+  "devDependencies": {
+    "web-ext": "^4.3.0",
+    "web-ext-types": "^3.2.1"
+  }
+}

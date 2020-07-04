@@ -15,25 +15,9 @@ class BaseProvider {
         this.options = options;
     }
 
-    getConfig() {
-        return {
-            id: this.id,
-            name: this.name,
-            baseURL: this.baseURL,
-            options: this.options,
-        };
-    }
-
-    setOptions(options) {
-        this.options = options;
-    }
-
-    setOption(key, option) {
-        this.options.key = option;
-    }
-
     /**
      * @abstract
+     * Generate url for API call.
      */
     generateURL() {
         throw new TypeError("Do not call abstract method from child.");

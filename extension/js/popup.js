@@ -1,77 +1,89 @@
-let currentProvider = "loripsum";
-
-let providers = [
-	loripsum,
-	baconipsum,
-	dinoipsum,
-	//example
-];
-
-window.onload = function() {
-
-	settings.loadAll();
-
-	populateProviders();
-
-	// Load previously displayed text
-	loadOldText();
-
-	// Provider <select> change listener
-	document.getElementById("provider").onchange = function() {
-		settings.saveProvider(currentProvider);
-		changeProvider(this.value);
-		loader.load();
-	};
-
-	// Display <button> click listener
-	document.getElementById("display").onclick = function() {
-		settings.saveProvider(currentProvider);
-		loader.load();
-	};
-
-	/* overlay hiding */
-	for (let overlay of document.getElementsByClassName("overlay")) {
-		overlay.onclick = function(e) {
-			if(e.target == this) {
-				this.classList.add("hidden");
-			}
-		};
-	}
-
-	for (let close of document.getElementsByClassName("close")) {
-		close.onclick = function() {
-			this.parentElement.parentElement.classList.add("hidden");
-		};
-	}
-
-	document.getElementById("info-button").onclick = function() {
-		document.getElementById(this.dataset.target).classList.remove("hidden");
-	};
+// Provider <select> change listener
+document.getElementById("provider").onchange = function () {
+    changeProvider(this.value);
+    requestProviderChange(this.value);
 };
 
-function loadOldText() {
-	var text = localStorage.getItem("lastText");
-	if (!text)
-		settings.saveProvider(currentProvider);
-		loader.load();
+// Display <button> click listener
+document.getElementById("display").onclick = function () {
+    requestNextLoremText();
+};
 
-	loader.fillOutput(text);
+// overlay hiding
+for (let overlay of document.getElementsByClassName("overlay")) {
+    overlay.onclick = function (e) {
+        if (e.target === this) {
+            this.classList.add("hidden");
+        }
+    };
 }
 
-function changeProvider(new_provider) {
-	document.getElementById(currentProvider).style.display = "none";
-	document.getElementById(new_provider).style.display = "block";
-	currentProvider = new_provider;
-	settings.saveCurrentProvider();
+// close buttons
+for (let close of document.getElementsByClassName("close")) {
+    close.onclick = function () {
+        this.parentElement.parentElement.classList.add("hidden");
+    };
 }
 
-function populateProviders() {
-	let providerSelect = document.getElementById("provider");
-	providers.forEach(function(provider) {
-		var option = document.createElement("option");
-		option.textContent = provider.config().name;
-		option.value = provider.config().id;
-		option.selected = provider.config().id == currentProvider;
-		providerSelect.appendChild(option);
-	});
+// info button
+document.getElementById("info-button").onclick = function () {
+    document.getElementById(this.dataset.target).classList.remove("hidden");
+};
+
+requestProviders().then(() => requestCurrentLoremText());
+
+function changeProvider(newProvider) {
+    document.querySelectorAll(".provider")
+        .forEach(element => element.style.display = "none");
+    document.getElementById(newProvider).style.display = "block";
+}
+
+function populateProviders(providers, currentProviderId) {
+    const providerSelect = document.getElementById("provider");
+    providerSelect.innerHTML = ""; // clear html
+    providers.forEach(function (provider) {
+        const option = document.createElement("option");
+        option.textContent = provider.name;
+        option.value = provider.id;
+        option.selected = provider.id === currentProviderId;
+        providerSelect.appendChild(option);
+    });
+}
+
+function setLoremText(text) {
+    document.getElementById("output").value = text;
+}
+
+function requestCurrentLoremText() {
+    return browser.runtime.sendMessage({
+        message: "currentLoremText",
+    }).then((response) => {
+        setLoremText(response);
+    });
+}
+
+function requestNextLoremText() {
+    return browser.runtime.sendMessage({
+        message: "nextLoremText",
+    }).then((response) => {
+        setLoremText(response);
+    });
+}
+
+function requestProviders() {
+    return browser.runtime.sendMessage({
+        message: "providers",
+    }).then((response) => {
+        populateProviders(response.providers, response.currentProviderId);
+    });
+}
+
+function requestProviderChange(newProviderId) {
+    return browser.runtime.sendMessage({
+        message: "providerChange",
+        newProviderId: newProviderId,
+    }).then((response) => {
+
+    });
+
 }

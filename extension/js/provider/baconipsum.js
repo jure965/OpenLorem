@@ -1,4 +1,4 @@
-import BaseProvider from "./base.provider";
+import BaseProvider from "./baseProvider";
 
 export const type = {
     ALL_MEAT: "all-meat",
@@ -11,31 +11,30 @@ export const format = {
     HTML: "html",
 };
 
-class Baconipsum extends BaseProvider {
+export const defaultOptions = {
+    type: type.ALL_MEAT,
+    paras: 5,
+    sentences: 0,
+    startWithLorem: 0,
+    format: format.HTML,
+};
+
+export default class Baconipsum extends BaseProvider {
     constructor() {
         super(
             "baconipsum",
             "Baconipsum",
             "https://baconipsum.com/api/",
-            {
-                type: type.ALL_MEAT,
-                paras: 5,
-                sentences: 0,
-                startWithLorem: 0,
-                format: format.HTML,
-            }
+            defaultOptions
         );
     }
 
     generateURL() {
-        let url = this.baseURL + "?";
-        for (let key in this.options) {
-            if (this.options[key]) {
-                url += "&" + key + "=" + this.options[key];
-            }
-        }
-        return url;
+        return this.baseURL + "?" + this.options.entries
+            .map((key, value) => {
+                return value ? key + "=" + value : 0;
+            })
+            .filter(Boolean)
+            .join("&");
     }
 }
-
-export default Baconipsum;

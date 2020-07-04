@@ -1,4 +1,4 @@
-import BaseProvider from "./base.provider";
+import BaseProvider from "./baseProvider";
 
 export const length = {
     SHORT: "short",
@@ -7,36 +7,38 @@ export const length = {
     VERYLONG: "verylong",
 };
 
-export class Loripsum extends BaseProvider {
+export const defaultOptions = {
+    paragraphs: 5,
+    length: length.SHORT,
+    link: false,
+    ul: false,
+    ol: false,
+    dl: false,
+    bq: false,
+    code: false,
+    headers: false,
+    allcaps: false,
+    prude: false,
+    plaintext: false,
+};
+
+export default class Loripsum extends BaseProvider {
     constructor() {
         super(
             "loripsum",
             "Loripsum",
             "http://loripsum.net/api/",
-            {
-                paragraphs: 5,
-                length: length.SHORT,
-                link: false,
-                ul: false,
-                ol: false,
-                dl: false,
-                bq: false,
-                code: false,
-                headers: false,
-                allcaps: false,
-                prude: false,
-                plaintext: false,
-            }
+            defaultOptions
         );
     }
 
     generateURL() {
-        let url = this.baseURL;
-        for (let key in this.options) {
-            url += this.options[key] ? "/" + key : "";
-        }
-        return url;
+        return this.baseURL + this.options.entries
+            .map((key, value) => {
+                if (["paragraphs", "length"].includes(key)) return value;
+                return value ? key : 0;
+            })
+            .filter(Boolean)
+            .join("/");
     }
 }
-
-export default Loripsum;
