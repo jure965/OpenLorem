@@ -1,10 +1,6 @@
 import background from "./background.js";
 
-export default class Utils {
-    static isCheckBox(element) {
-        return element.type.toLowerCase() === "checkbox";
-    }
-
+export default class BackgroundUtils {
     /**
      * Remove and create context menu.
      */
@@ -17,7 +13,7 @@ export default class Utils {
             browser.menus.removeAll().then(() => {
                 if (providerName) {
                     browser.menus.create({
-                        id: "insert-ipsum",
+                        id: "insertLoremText",
                         title: ["Insert", providerName].join(" "),
                         contexts: ["all"]
                     });
@@ -26,14 +22,14 @@ export default class Utils {
         });
     }
 
+    /**
+     * Adds click event listener, where we perform the appropriate action given the
+     * ID of the menu item that was clicked.
+     */
     static setupContextMenu() {
-        /**
-         * The click event listener, where we perform the appropriate action given the
-         * ID of the menu item that was clicked.
-         */
         browser.menus.onClicked.addListener((request, tab) => {
             switch (request.menuItemId) {
-                case "insert-ipsum":
+                case "insertLoremText":
                     background.getCurrentText().then((currentText) => {
                         browser.tabs.sendMessage(tab.id, {
                             message: "fillWithLoremText",
@@ -45,7 +41,6 @@ export default class Utils {
                     break;
             }
         });
-
         this.refreshContextMenu();
     }
 }

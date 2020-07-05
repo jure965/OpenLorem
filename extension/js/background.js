@@ -1,6 +1,6 @@
 import Loripsum from "./provider/Loripsum.js";
 import SettingsStorage from "./SettingsStorage.js";
-import Utils from "./Utils.js";
+import BackgroundUtils from "./BackgroundUtils.js";
 import Baconipsum from "./provider/Baconipsum.js";
 import Dinoipsum from "./provider/Dinoipsum.js";
 import LoremService from "./LoremService.js";
@@ -58,7 +58,7 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
             break;
         case "providerChange":
             currentProvider = providers.find(p => p.id === request.newProviderId);
-            Utils.refreshContextMenu(currentProvider.name);
+            BackgroundUtils.refreshContextMenu(currentProvider.name);
             settings.currentProviderId = currentProvider.id;
             SettingsStorage.storeSettings(settings);
             break;
@@ -89,4 +89,4 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
-Utils.setupContextMenu();
+BackgroundUtils.setupContextMenu();
