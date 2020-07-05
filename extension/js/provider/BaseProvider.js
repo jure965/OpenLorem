@@ -16,6 +16,16 @@ class BaseProvider {
     }
 
     /**
+     * Set option value.
+     *
+     * @param key option key
+     * @param value option value
+     */
+    setOption(key, value) {
+        this.options[key] = value;
+    }
+
+    /**
      * @abstract
      * Generate url for API call.
      */

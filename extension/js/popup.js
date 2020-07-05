@@ -80,8 +80,15 @@ function requestProviderChange(newProviderId) {
     });
 }
 
+function requestProviderOptionChange(option) {
+    return browser.runtime.sendMessage({
+        message: "providerOptionChange",
+        option: option,
+    });
+}
+
 function isCheckbox(element) {
-    return (element || {}).type === 'checkbox';
+    return (element || {}).type.toLowerCase() === "checkbox";
 }
 
 // load current lorem text on popup open
@@ -89,6 +96,18 @@ window.addEventListener("load", () => {
     requestProviders().then(() => {
         requestCurrentLoremText();
     });
+});
+
+function onFormChange(e) {
+    requestProviderOptionChange({
+        key: e.target.name,
+        value: isCheckbox(e.target) ? e.target.checked : e.target.value,
+        provider: e.currentTarget.dataset.provider,
+    });
+}
+
+document.querySelectorAll("form").forEach((element) => {
+    element.addEventListener("change", onFormChange);
 });
 
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -99,15 +118,4 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
         default:
             break;
     }
-});
-
-function onFormChange(e) {
-    const element = e.target;
-    const key = element.name;
-    const value = isCheckbox(element) ? element.checked : element.value;
-    console.log(key + "=" + value);
-}
-
-document.querySelectorAll("form").forEach((element) => {
-    element.addEventListener("change", onFormChange);
 });

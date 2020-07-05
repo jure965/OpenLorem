@@ -38,11 +38,16 @@ function getCurrentProvider() {
     return currentProvider;
 }
 
-let currentProvider = providers.find(p => p.id === settings.currentProviderId);
+function getProvider(providerId) {
+    return providers.find(p => p.id === providerId);
+}
+
+let currentProvider = getProvider(settings.currentProviderId);
 
 let currentText = "";
 
 export default {
+    getProvider: getProvider,
     getCurrentProvider: getCurrentProvider,
     getCurrentText: getCurrentText,
     getNextText: getNextText,
@@ -57,10 +62,14 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
             });
             break;
         case "providerChange":
-            currentProvider = providers.find(p => p.id === request.newProviderId);
+            currentProvider = getProvider(request.newProviderId);
             BackgroundUtils.refreshContextMenu(currentProvider.name);
             settings.currentProviderId = currentProvider.id;
             SettingsStorage.storeSettings(settings);
+            break;
+        case "providerOptionChange":
+            getProvider(request.option.provider)
+                .setOption(request.option.key, request.option.value);
             break;
         case "currentLoremText":
             getCurrentText().then((text) => {
