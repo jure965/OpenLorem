@@ -5,15 +5,6 @@ export default class Utils {
 
     static setupContextMenu() {
         /**
-         * Called when the item has been created, or when creation failed due to an error.
-         */
-        function onCreated() {
-            if (browser.runtime.lastError) {
-                console.log(`Error: ${browser.runtime.lastError}`);
-            }
-        }
-
-        /**
          * The click event listener, where we perform the appropriate action given the
          * ID of the menu item that was clicked.
          */
@@ -32,27 +23,35 @@ export default class Utils {
         /**
          * Remove and create context menu.
          */
-        function refreshMenu(show) {
+        function refreshMenu(providerName) {
             browser.menus.removeAll().then(() => {
-                if (show) {
+                if (providerName) {
                     browser.menus.create({
                         id: "insert-ipsum",
-                        title: "Insert Lorem Ipsum", // todo: provider name
+                        title: ["Insert", providerName].join(" "),
                         contexts: ["all"]
-                    }, onCreated);
+                    }, () => {
+                        if (browser.runtime.lastError) {
+                            console.log(`Error: ${browser.runtime.lastError}`);
+                        }
+                    });
                 }
             });
         }
 
-        function onGot(item) {
-            refreshMenu(!!item.context_menu);
-        }
-
-        function onError(error) {
+        browser.storage.local.get("context_menu").then((item) => {
+            if (item.context_menu) {
+                browser.runtime.sendMessage({
+                    message: "currentProviderName",
+                }).then((response) => {
+                    refreshMenu(response.currentProviderName);
+                });
+            } else {
+                refreshMenu("");
+            }
+        }, (error) => {
             console.log(`Error: ${error}`);
-        }
-
-        browser.storage.local.get("context_menu").then(onGot, onError);
+        });
 
         browser.storage.onChanged.addListener(e => refreshMenu(e.context_menu.newValue));
     }

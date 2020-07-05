@@ -57,6 +57,12 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     });
                 });
             break;
+        case "currentProviderName":
+            sendResponse({
+                message: "OK",
+                currentProviderName: currentProvider.name,
+            });
+            break;
         default:
             break;
 
