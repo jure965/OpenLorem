@@ -1,9 +1,9 @@
-import Loripsum from "./provider/loripsum";
-import Baconipsum from "./provider/baconipsum";
-import Dinoipsum from "./provider/dinoipsum";
-import SettingsStorage from "./settingsStorage";
-import Utils from "./utils";
-import LoremService from "./loremService";
+import Loripsum from "./provider/loripsum.js";
+import SettingsStorage from "./settingsStorage.js";
+import Utils from "./utils.js";
+import Baconipsum from "./provider/baconipsum.js";
+import Dinoipsum from "./provider/dinoipsum.js";
+import LoremService from "./loremService.js";
 
 const settings = SettingsStorage.getDefaultSettings();
 
@@ -11,7 +11,7 @@ SettingsStorage.loadSettings().then((s) => {
     Object.assign(settings, s);
 });
 
-Utils.setContextMenu();
+Utils.setupContextMenu();
 
 const providers = [
     new Loripsum(),
@@ -46,15 +46,16 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 });
                 break;
             }
-            /* falls through */
+        /* falls through */
         case "nextLoremText":
-            LoremService.load(currentProvider, (text) => {
-                currentText = text;
-                sendResponse({
-                    message: "OK",
-                    text: currentText,
+            LoremService.load(currentProvider)
+                .then(response => response.text())
+                .then(text => {
+                    sendResponse({
+                        message: "OK",
+                        text: text,
+                    });
                 });
-            });
             break;
         default:
             break;

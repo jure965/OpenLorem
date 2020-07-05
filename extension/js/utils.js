@@ -3,15 +3,13 @@ export default class Utils {
         return element.type.toLowerCase() === "checkbox";
     }
 
-    static setContextMenu() {
+    static setupContextMenu() {
         /**
          * Called when the item has been created, or when creation failed due to an error.
          */
         function onCreated() {
             if (browser.runtime.lastError) {
                 console.log(`Error: ${browser.runtime.lastError}`);
-            } else {
-                console.log("Item created successfully");
             }
         }
 
@@ -19,50 +17,43 @@ export default class Utils {
          * The click event listener, where we perform the appropriate action given the
          * ID of the menu item that was clicked.
          */
-        browser.contextMenus.onClicked.addListener((request, tab) => {
+        browser.menus.onClicked.addListener((request, tab) => {
             switch (request.menuItemId) {
-
                 case "insert-ipsum":
                     browser.tabs.sendMessage(tab.id, {
                         message: "get_clicked_element",
-                    });
+                    }).then();
+                    break;
+                default:
                     break;
             }
         });
 
         /**
-         * Create/remove context menu.
+         * Remove and create context menu.
          */
-        let menuID;
-
-        function toggleContextMenu(show) {
-            if (show) {
-                menuID = browser.contextMenus.create({
-                    id: "insert-ipsum",
-                    title: "Insert Lorem Ipsum",
-                    contexts: ["all"]
-                }, onCreated);
-            } else {
-                browser.contextMenus.remove(menuID);
-            }
+        function refreshMenu(show) {
+            browser.menus.removeAll().then(() => {
+                if (show) {
+                    browser.menus.create({
+                        id: "insert-ipsum",
+                        title: "Insert Lorem Ipsum", // todo: provider name
+                        contexts: ["all"]
+                    }, onCreated);
+                }
+            });
         }
 
         function onGot(item) {
-            toggleContextMenu(item.context_menu === true);
-            console.log("item", item);
+            refreshMenu(!!item.context_menu);
         }
 
         function onError(error) {
             console.log(`Error: ${error}`);
         }
 
-        var getting = browser.storage.local.get("context_menu");
-        getting.then(onGot, onError);
+        browser.storage.local.get("context_menu").then(onGot, onError);
 
-        function logStorageChange(e) {
-            toggleContextMenu(e.context_menu.newValue);
-        }
-
-        browser.storage.onChanged.addListener(logStorageChange);
+        browser.storage.onChanged.addListener(e => refreshMenu(e.context_menu.newValue));
     }
 }

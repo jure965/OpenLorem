@@ -1,4 +1,4 @@
-import BaseProvider from "./baseProvider";
+import BaseProvider from "./baseProvider.js";
 
 export const format = {
     JSON: "json",
@@ -23,9 +23,9 @@ export default class Dinoipsum extends BaseProvider {
     }
 
     generateURL() {
-        return this.baseURL + "?" + this.options.entries
-            .map((key, value) => {
-                return value ? key + "=" + value : 0;
+        return this.baseURL + "?" + Object.entries(this.options)
+            .map(entry => {
+                return entry[1] ? entry[0] + "=" + entry[1] : 0;
             })
             .filter(Boolean)
             .join("&");

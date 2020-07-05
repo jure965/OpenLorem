@@ -1,4 +1,4 @@
-import BaseProvider from "./baseProvider";
+import BaseProvider from "./baseProvider.js";
 
 export const length = {
     SHORT: "short",
@@ -33,10 +33,10 @@ export default class Loripsum extends BaseProvider {
     }
 
     generateURL() {
-        return this.baseURL + this.options.entries
-            .map((key, value) => {
-                if (["paragraphs", "length"].includes(key)) return value;
-                return value ? key : 0;
+        return this.baseURL + Object.entries(this.options)
+            .map(entry => {
+                if (["paragraphs", "length"].includes(entry[0])) return entry[1];
+                return entry[1] ? entry[0] : 0;
             })
             .filter(Boolean)
             .join("/");

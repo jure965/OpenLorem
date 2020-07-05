@@ -10,7 +10,7 @@ export default class LoremService {
         xmlHttp.send(null);
     }
 
-    static load(provider, callback) {
-        this.httpGetAsync(provider.generateURL(), callback);
+    static load(provider) {
+        return fetch(provider.generateURL());
     }
 }

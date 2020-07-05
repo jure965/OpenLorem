@@ -20,7 +20,7 @@
     "http://loripsum.net/api/*",
     "http://dinoipsum.herokuapp.com/api/*",
     "webRequest",
-    "contextMenus",
+    "menus",
     "storage",
     "tabs",
     "activeTab"
@@ -34,7 +34,7 @@
         "*://*/*"
       ],
       "js": [
-        "content-script/content_script.js"
+        "js/contentScript.js"
       ],
       "all_frames": true
     }
