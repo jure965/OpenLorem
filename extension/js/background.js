@@ -58,8 +58,9 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
             break;
         case "providerChange":
             currentProvider = providers.find(p => p.id === request.newProviderId);
-            sendResponse({});
             Utils.refreshContextMenu(currentProvider.name);
+            settings.currentProviderId = currentProvider.id;
+            SettingsStorage.storeSettings(settings);
             break;
         case "currentLoremText":
             getCurrentText().then((text) => {
