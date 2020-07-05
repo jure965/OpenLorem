@@ -80,11 +80,14 @@ function requestProviderChange(newProviderId) {
     });
 }
 
+function isCheckbox(element) {
+    return (element || {}).type === 'checkbox';
+}
+
 // load current lorem text on popup open
 window.addEventListener("load", () => {
     requestProviders().then(() => {
         requestCurrentLoremText();
-
     });
 });
 
@@ -96,4 +99,15 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
         default:
             break;
     }
+});
+
+function onFormChange(e) {
+    const element = e.target;
+    const key = element.name;
+    const value = isCheckbox(element) ? element.checked : element.value;
+    console.log(key + "=" + value);
+}
+
+document.querySelectorAll("form").forEach((element) => {
+    element.addEventListener("change", onFormChange);
 });

@@ -1,6 +1,6 @@
 # OpenLorem
 
-API client for Lorem Ipsum providers as WebExtension.
+API client for Lorem Ipsum text providers as WebExtension.
 
 ## TODO
 
@@ -12,7 +12,7 @@ API client for Lorem Ipsum providers as WebExtension.
 - fix UI on Chrome (padding around body)
 - Change UI/UX to [Photon Design System](http://design.firefox.com/photon/welcome.html) 
 
-## Currently supported Lorem Ipsum providers
+## Current Lorem Ipsum providers
 
 - [Bacon Ipsum](https://baconipsum.com/json-api/)
 - [Loripsum.net](http://loripsum.net/)
@@ -20,21 +20,29 @@ API client for Lorem Ipsum providers as WebExtension.
 
 ## Where do I get the extension?
 
-It is published on [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/openlorem) and [Chrome Web Store](https://chrome.google.com/webstore/detail/openlorem/dlellbpcbpmgkjkalnjiomdapjgammfl).
+It is published on [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/openlorem)
+and [Chrome Web Store](https://chrome.google.com/webstore/detail/openlorem/dlellbpcbpmgkjkalnjiomdapjgammfl).
 
-If you want latest developement version, you can [clone/download](https://github.com/jure965/OpenLorem) and [install](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Temporary_Installation_in_Firefox) it as temporary extension for [debugging](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Debugging) purposes in Firefox.
+If you want the latest development version, you can [clone/download](https://github.com/jure965/OpenLorem)
+then [install](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Temporary_Installation_in_Firefox)
+it as temporary extension for [debugging](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Debugging)
+purposes in Firefox.
 
-For Chrome you can go to [chrome://extensions/](chrome://extensions/), enable developer mode and click "load unpacked extension" then select folder with manifest.json file.
+For Chrome, you can go to [chrome://extensions/](chrome://extensions/),
+enable developer mode and click "load unpacked extension" then select folder
+with manifest.json file.
 
 ## How to contribute? 
 
-One way is to fork, make changes, commit and make pull request.
+If you find an issue or a bug, please use [GitHub issues page](https://github.com/jure965/OpenLorem/issues)
+to report.
 
-Another way is leaving feedback on [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/openlorem).
+If you like this web extension, consider leaving feedback on [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/openlorem).
 
-You have your own Lorem Ipsum API? Let me know and we will add it.
+You have your own Lorem Ipsum API? Let us know, and we will add it.
 
 ## Contributors
 
-Developement started by jure965.
-Completely reworked and rescripted by BojanKogoj.
+* [jure965](https://github.com/jure965/)
+* [BojanKogoj](https://github.com/BojanKogoj/)
+* [You :)](https://github.com/jure965/OpenLorem/issues)
