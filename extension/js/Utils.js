@@ -1,3 +1,5 @@
+import background from "./background.js";
+
 export default class Utils {
     static isCheckBox(element) {
         return element.type.toLowerCase() === "checkbox";
@@ -11,9 +13,12 @@ export default class Utils {
         browser.menus.onClicked.addListener((request, tab) => {
             switch (request.menuItemId) {
                 case "insert-ipsum":
-                    browser.tabs.sendMessage(tab.id, {
-                        message: "get_clicked_element",
-                    }).then();
+                    background.getCurrentText().then((currentText) => {
+                        browser.tabs.sendMessage(tab.id, {
+                            message: "fillWithLoremText",
+                            text: currentText,
+                        });
+                    });
                     break;
                 default:
                     break;
@@ -41,11 +46,7 @@ export default class Utils {
 
         browser.storage.local.get("context_menu").then((item) => {
             if (item.context_menu) {
-                browser.runtime.sendMessage({
-                    message: "currentProviderName",
-                }).then((response) => {
-                    refreshMenu(response.currentProviderName);
-                });
+                refreshMenu(background.getCurrentProvider().name);
             } else {
                 refreshMenu("");
             }

@@ -1,6 +1,6 @@
-import {defaultOptions as loripsumDefaults} from "./provider/loripsum.js";
-import {defaultOptions as baconipsumDefaults} from "./provider/baconipsum.js";
-import {defaultOptions as dinoipsumDefaults} from "./provider/dinoipsum.js";
+import {defaultOptions as loripsumDefaults} from "./provider/Loripsum.js";
+import {defaultOptions as baconipsumDefaults} from "./provider/Baconipsum.js";
+import {defaultOptions as dinoipsumDefaults} from "./provider/Dinoipsum.js";
 
 export default class SettingsStorage {
     static getDefaultSettings() {

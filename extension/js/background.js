@@ -1,9 +1,9 @@
-import Loripsum from "./provider/loripsum.js";
-import SettingsStorage from "./settingsStorage.js";
-import Utils from "./utils.js";
-import Baconipsum from "./provider/baconipsum.js";
-import Dinoipsum from "./provider/dinoipsum.js";
-import LoremService from "./loremService.js";
+import Loripsum from "./provider/Loripsum.js";
+import SettingsStorage from "./SettingsStorage.js";
+import Utils from "./Utils.js";
+import Baconipsum from "./provider/Baconipsum.js";
+import Dinoipsum from "./provider/Dinoipsum.js";
+import LoremService from "./LoremService.js";
 
 const settings = SettingsStorage.getDefaultSettings();
 
@@ -11,60 +11,83 @@ SettingsStorage.loadSettings().then((s) => {
     Object.assign(settings, s);
 });
 
-Utils.setupContextMenu();
-
 const providers = [
     new Loripsum(),
     new Baconipsum(),
     new Dinoipsum(),
 ];
 
+function getCurrentText() {
+    if (currentText) {
+        return Promise.resolve(currentText);
+    } else {
+        return getNextText();
+    }
+}
+
+function getNextText() {
+    return LoremService.load(currentProvider)
+        .then(response => response.text())
+        .then(text => {
+            currentText = text;
+            return currentText;
+        });
+}
+
+function getCurrentProvider() {
+    return currentProvider;
+}
+
 let currentProvider = providers.find(p => p.id === settings.currentProviderId);
 
 let currentText = "";
+
+export default {
+    getCurrentProvider: getCurrentProvider,
+    getCurrentText: getCurrentText,
+    getNextText: getNextText,
+};
 
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
     switch (request.message) {
         case "providers":
             sendResponse({
-                message: "OK",
                 providers: providers,
                 currentProviderId: currentProvider.id,
             });
             break;
         case "providerChange":
             currentProvider = providers.find(p => p.id === request.newProviderId);
-            sendResponse({
-                message: "OK",
-            });
+            sendResponse({});
             break;
         case "currentLoremText":
-            if (currentText) {
+            getCurrentText().then((text) => {
+                console.log("currentLoremText");
                 sendResponse({
-                    message: "OK",
-                    text: currentText,
+                    text: text,
                 });
-                break;
-            }
-        /* falls through */
+            });
+            break;
         case "nextLoremText":
-            LoremService.load(currentProvider)
-                .then(response => response.text())
-                .then(text => {
-                    sendResponse({
-                        message: "OK",
-                        text: text,
-                    });
+            getNextText().then((text) => {
+                console.log("nextLoremText");
+                sendResponse({
+                    text: text,
                 });
+            });
             break;
         case "currentProviderName":
+            console.log(currentProvider.name);
             sendResponse({
-                message: "OK",
                 currentProviderName: currentProvider.name,
             });
             break;
         default:
+            sendResponse({
+                error: "Unknown request.",
+            });
             break;
-
     }
 });
+
+Utils.setupContextMenu();

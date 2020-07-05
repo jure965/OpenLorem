@@ -1,4 +1,4 @@
-import BaseProvider from "./baseProvider.js";
+import BaseProvider from "./BaseProvider.js";
 
 export const length = {
     SHORT: "short",

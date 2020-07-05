@@ -2,7 +2,7 @@ let clickedElement = null;
 
 function setClickedElement(event) {
     //right click
-    if (event.button == 2) {
+    if (event.button === 2) {
         clickedElement = event.target;
     }
 }
@@ -17,17 +17,17 @@ window.addEventListener("load", () => {
     });
 });
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    if (request.message === "get_clicked_element") {
-        console.log(clickedElement);
-
-        sendResponse({value: clickedElement.value});
-        chrome.runtime.sendMessage({
-            message: "give_lorem",
-        });
-    } else if (request.message === "this_is_lorem") {
-        if (request.data) {
-            clickedElement.innerHTML = request.data;
+browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    if (request.message === "fillWithLoremText") {
+        if (clickedElement != null) {
+            clickedElement.innerHTML = request.text;
+            sendResponse({
+                message: "OK",
+            });
+        } else {
+            sendResponse({
+                message: "FAIL",
+            });
         }
     }
 });

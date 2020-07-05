@@ -1,4 +1,9 @@
-import BaseProvider from "./baseProvider.js";
+import BaseProvider from "./BaseProvider.js";
+
+export const type = {
+    ALL_MEAT: "all-meat",
+    MEAT_AND_FILLER: "meat-and-filler",
+};
 
 export const format = {
     JSON: "json",
@@ -7,17 +12,19 @@ export const format = {
 };
 
 export const defaultOptions = {
+    type: type.ALL_MEAT,
+    paras: 5,
+    sentences: 0,
+    startWithLorem: 0,
     format: format.HTML,
-    words: 30,
-    paragraphs: 5,
 };
 
-export default class Dinoipsum extends BaseProvider {
+export default class Baconipsum extends BaseProvider {
     constructor() {
         super(
-            "dinoipsum",
-            "Dinoipsum",
-            "http://dinoipsum.herokuapp.com/api/",
+            "baconipsum",
+            "Baconipsum",
+            "https://baconipsum.com/api/",
             defaultOptions
         );
     }

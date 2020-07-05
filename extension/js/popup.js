@@ -58,7 +58,8 @@ function requestCurrentLoremText() {
     return browser.runtime.sendMessage({
         message: "currentLoremText",
     }).then((response) => {
-        setLoremText(response);
+        console.log(response);
+        setLoremText(response.text);
     });
 }
 
@@ -66,7 +67,11 @@ function requestNextLoremText() {
     return browser.runtime.sendMessage({
         message: "nextLoremText",
     }).then((response) => {
-        setLoremText(response);
+        console.log(response);
+        if (browser.runtime.lastError) {
+            console.log(`Error: ${browser.runtime.lastError}`);
+        }
+        setLoremText(response.text);
     });
 }
 
@@ -87,3 +92,7 @@ function requestProviderChange(newProviderId) {
     });
 
 }
+
+window.addEventListener("load", () => {
+    requestCurrentLoremText();
+});
