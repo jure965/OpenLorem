@@ -30,10 +30,10 @@ document.getElementById("info-button").onclick = function () {
     document.getElementById(this.dataset.target).classList.remove("hidden");
 };
 
-function changeProvider(newProvider) {
+function changeProvider(providerId) {
     document.querySelectorAll(".provider")
         .forEach(element => element.style.display = "none");
-    document.getElementById(newProvider).style.display = "block";
+    document.getElementById(providerId).style.display = "block";
 }
 
 function populateProviders(providers, currentProviderId) {
@@ -46,6 +46,7 @@ function populateProviders(providers, currentProviderId) {
         option.selected = provider.id === currentProviderId;
         providerSelect.appendChild(option);
     });
+    changeProvider(currentProviderId);
 }
 
 function setLoremText(text) {
@@ -81,7 +82,10 @@ function requestProviderChange(newProviderId) {
 
 // load current lorem text on popup open
 window.addEventListener("load", () => {
-    requestProviders().then(() => requestCurrentLoremText());
+    requestProviders().then(() => {
+        requestCurrentLoremText();
+
+    });
 });
 
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
