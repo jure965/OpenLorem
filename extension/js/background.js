@@ -59,20 +59,21 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
         case "providerChange":
             currentProvider = providers.find(p => p.id === request.newProviderId);
             sendResponse({});
+            Utils.refreshContextMenu(currentProvider.name);
             break;
         case "currentLoremText":
             getCurrentText().then((text) => {
-                console.log("currentLoremText");
-                sendResponse({
+                browser.runtime.sendMessage({
+                    message: "loremTextResponse",
                     text: text,
                 });
             });
             break;
         case "nextLoremText":
             getNextText().then((text) => {
-                console.log("nextLoremText");
-                sendResponse({
-                    text: text,
+                browser.runtime.sendMessage({
+                    message: "loremTextResponse",
+                    text: text
                 });
             });
             break;
@@ -83,9 +84,6 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
             });
             break;
         default:
-            sendResponse({
-                error: "Unknown request.",
-            });
             break;
     }
 });

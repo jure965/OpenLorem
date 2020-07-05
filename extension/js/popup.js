@@ -30,8 +30,6 @@ document.getElementById("info-button").onclick = function () {
     document.getElementById(this.dataset.target).classList.remove("hidden");
 };
 
-requestProviders().then(() => requestCurrentLoremText());
-
 function changeProvider(newProvider) {
     document.querySelectorAll(".provider")
         .forEach(element => element.style.display = "none");
@@ -57,21 +55,12 @@ function setLoremText(text) {
 function requestCurrentLoremText() {
     return browser.runtime.sendMessage({
         message: "currentLoremText",
-    }).then((response) => {
-        console.log(response);
-        setLoremText(response.text);
     });
 }
 
 function requestNextLoremText() {
     return browser.runtime.sendMessage({
         message: "nextLoremText",
-    }).then((response) => {
-        console.log(response);
-        if (browser.runtime.lastError) {
-            console.log(`Error: ${browser.runtime.lastError}`);
-        }
-        setLoremText(response.text);
     });
 }
 
@@ -87,12 +76,20 @@ function requestProviderChange(newProviderId) {
     return browser.runtime.sendMessage({
         message: "providerChange",
         newProviderId: newProviderId,
-    }).then((response) => {
-
     });
-
 }
 
+// load current lorem text on popup open
 window.addEventListener("load", () => {
-    requestCurrentLoremText();
+    requestProviders().then(() => requestCurrentLoremText());
+});
+
+browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    switch (request.message) {
+        case "loremTextResponse":
+            setLoremText(request.text);
+            break;
+        default:
+            break;
+    }
 });

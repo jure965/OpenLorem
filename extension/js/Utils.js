@@ -5,6 +5,33 @@ export default class Utils {
         return element.type.toLowerCase() === "checkbox";
     }
 
+
+
+    /**
+     * Remove and create context menu.
+     */
+    static refreshContextMenu() {
+        browser.storage.local.get("context_menu").then((item) => {
+            let providerName = null;
+            if (item.context_menu) {
+                providerName = background.getCurrentProvider().name;
+            }
+            browser.menus.removeAll().then(() => {
+                if (providerName) {
+                    browser.menus.create({
+                        id: "insert-ipsum",
+                        title: ["Insert", providerName].join(" "),
+                        contexts: ["all"]
+                    }, () => {
+                        if (browser.runtime.lastError) {
+                            console.log(`Error: ${browser.runtime.lastError}`);
+                        }
+                    });
+                }
+            });
+        });
+    }
+
     static setupContextMenu() {
         /**
          * The click event listener, where we perform the appropriate action given the
@@ -25,34 +52,7 @@ export default class Utils {
             }
         });
 
-        /**
-         * Remove and create context menu.
-         */
-        function refreshMenu(providerName) {
-            browser.menus.removeAll().then(() => {
-                if (providerName) {
-                    browser.menus.create({
-                        id: "insert-ipsum",
-                        title: ["Insert", providerName].join(" "),
-                        contexts: ["all"]
-                    }, () => {
-                        if (browser.runtime.lastError) {
-                            console.log(`Error: ${browser.runtime.lastError}`);
-                        }
-                    });
-                }
-            });
-        }
-
-        browser.storage.local.get("context_menu").then((item) => {
-            if (item.context_menu) {
-                refreshMenu(background.getCurrentProvider().name);
-            } else {
-                refreshMenu("");
-            }
-        }, (error) => {
-            console.log(`Error: ${error}`);
-        });
+        this.refreshContextMenu();
 
         browser.storage.onChanged.addListener(e => refreshMenu(e.context_menu.newValue));
     }

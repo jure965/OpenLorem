@@ -10,6 +10,7 @@ function setClickedElement(event) {
 document.addEventListener("mousedown", setClickedElement, true);
 
 // support for iframe elements
+// nested iframe elements are not yet supported
 window.addEventListener("load", () => {
     let elementList = document.querySelectorAll("iframe");
     elementList.forEach((element) => {
@@ -18,16 +19,18 @@ window.addEventListener("load", () => {
 });
 
 browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    if (request.message === "fillWithLoremText") {
-        if (clickedElement != null) {
-            clickedElement.innerHTML = request.text;
-            sendResponse({
-                message: "OK",
-            });
-        } else {
-            sendResponse({
-                message: "FAIL",
-            });
-        }
+    switch (request.message) {
+        case "fillWithLoremText":
+            if (clickedElement != null) {
+                clickedElement.innerHTML = request.text;
+                sendResponse({});
+            } else {
+                sendResponse({
+                    error: "clickedElement is null",
+                });
+            }
+            break;
+        default:
+            break;
     }
 });
