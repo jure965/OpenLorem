@@ -5,8 +5,6 @@ export default class Utils {
         return element.type.toLowerCase() === "checkbox";
     }
 
-
-
     /**
      * Remove and create context menu.
      */
@@ -22,10 +20,6 @@ export default class Utils {
                         id: "insert-ipsum",
                         title: ["Insert", providerName].join(" "),
                         contexts: ["all"]
-                    }, () => {
-                        if (browser.runtime.lastError) {
-                            console.log(`Error: ${browser.runtime.lastError}`);
-                        }
                     });
                 }
             });
@@ -53,7 +47,5 @@ export default class Utils {
         });
 
         this.refreshContextMenu();
-
-        browser.storage.onChanged.addListener(e => refreshMenu(e.context_menu.newValue));
     }
 }

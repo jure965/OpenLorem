@@ -1,23 +1,14 @@
 function saveOptions(e) {
     e.preventDefault();
-    browser.storage.local.set({
-        context_menu: document.querySelector("#context-menu").checked
-    }).then(() => {
-        console.log("Settings stored.");
+    return browser.storage.local.set({
+        context_menu: document.querySelector("#context-menu").checked,
     });
 }
 
 function restoreOptions() {
-    function setCurrentChoice(result) {
+    return browser.storage.local.get("context_menu").then((result) => {
         document.querySelector("#context-menu").checked = result.context_menu || false;
-    }
-
-    function onError(error) {
-        console.log(`Error: ${error}`);
-    }
-
-    browser.storage.local.get("context_menu")
-        .then(setCurrentChoice, onError);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
