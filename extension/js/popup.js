@@ -37,7 +37,7 @@ function changeProvider(providerId) {
 }
 
 function populateProviders(providers, currentProviderId) {
-    const providerSelect = document.getElementById("provider");
+    const providerSelect = document.getElementById("providerSelect");
     providerSelect.innerHTML = ""; // clear html
     providers.forEach(function (provider) {
         const option = document.createElement("option");
