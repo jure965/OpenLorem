@@ -1,13 +1,13 @@
 import background from "./background.js";
 
-export default class BackgroundUtils {
+export default class ContextMenu {
     /**
      * Remove and create context menu.
      */
     static refreshContextMenu() {
-        browser.storage.local.get("context_menu").then((item) => {
+        browser.storage.local.get("contextMenu").then((item) => {
             let providerName = null;
-            if (item.context_menu) {
+            if (item.contextMenu) {
                 providerName = background.getCurrentProvider().name;
             }
             browser.menus.removeAll().then(() => {
@@ -31,7 +31,7 @@ export default class BackgroundUtils {
             switch (request.menuItemId) {
                 case "insertLoremText":
                     background.getCurrentText().then((currentText) => {
-                        browser.tabs.sendMessage(tab.id, {
+                        return browser.tabs.sendMessage(tab.id, {
                             message: "fillWithLoremText",
                             text: currentText,
                         });
@@ -42,5 +42,10 @@ export default class BackgroundUtils {
             }
         });
         this.refreshContextMenu();
+        browser.storage.onChanged.addListener((changes, areaName) => {
+            if (areaName === "local" && changes.hasOwnProperty("contextMenu")) {
+                this.refreshContextMenu();
+            }
+        });
     }
 }

@@ -1,15 +1,10 @@
-function saveOptions(e) {
+browser.storage.local.get("contextMenu").then((item) => {
+    document.querySelector("#context-menu").checked = item ? item.contextMenu : false;
+});
+
+document.querySelector("form").addEventListener("change", (e) => {
     e.preventDefault();
     return browser.storage.local.set({
-        context_menu: document.querySelector("#context-menu").checked,
+        contextMenu: document.querySelector("#context-menu").checked,
     });
-}
-
-function restoreOptions() {
-    return browser.storage.local.get("context_menu").then((result) => {
-        document.querySelector("#context-menu").checked = result.context_menu || false;
-    });
-}
-
-document.addEventListener("DOMContentLoaded", restoreOptions);
-document.querySelector("form").addEventListener("submit", saveOptions);
+});
