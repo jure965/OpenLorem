@@ -40,6 +40,7 @@
         "*://*/*"
       ],
       "js": [
+        "js/vendor/browser-polyfill.js",
         "js/content.js"
       ],
       "all_frames": true
