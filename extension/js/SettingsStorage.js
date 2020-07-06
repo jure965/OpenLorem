@@ -1,26 +1,39 @@
-import {defaultOptions as loripsumDefaults} from "./provider/Loripsum.js";
-import {defaultOptions as baconipsumDefaults} from "./provider/Baconipsum.js";
-import {defaultOptions as dinoipsumDefaults} from "./provider/Dinoipsum.js";
-
 export default class SettingsStorage {
-    static getDefaultSettings() {
-        return {
-            currentProviderId: "loripsum",
-            providerSettings: {
-                loripsum: Object.assign({}, loripsumDefaults),
-                baconipsum: Object.assign({}, baconipsumDefaults),
-                dinoipsum: Object.assign({}, dinoipsumDefaults),
-            },
-        };
+    static storeCurrentProvider(currentProviderId) {
+        return browser.storage.local.set({
+            currentProviderId: currentProviderId,
+        });
     }
 
-    static loadSettings() {
-        return browser.storage.local.get("settings");
+    static loadCurrentProvider() {
+        return browser.storage.local.get("currentProviderId").then((item) => {
+            if (item && item.hasOwnProperty("currentProviderId")) {
+                return item.currentProviderId;
+            }
+            return null;
+        });
     }
 
-    static storeSettings(settings) {
-        browser.storage.local.set({settings}).then(() => {
-            console.log("Settings stored.");
+    static storeProviderOptions(provider) {
+        return browser.storage.local.get("providerSettings").then((item) => {
+            let providerSettings = {};
+            if (item && item.hasOwnProperty("providerSettings")) {
+                providerSettings = item.providerSettings;
+            }
+            providerSettings[provider.id] = provider.options;
+            return browser.storage.local.set({providerSettings});
+        });
+    }
+
+    static loadProviderOptions(provider) {
+        return browser.storage.local.get("providerSettings").then((item) => {
+            if (item && item.hasOwnProperty("providerSettings")) {
+                const providerSettings = item.providerSettings;
+                if (providerSettings.hasOwnProperty(provider.id)) {
+                    return providerSettings[provider.id];
+                }
+            }
+            return null;
         });
     }
 }

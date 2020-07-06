@@ -1,16 +1,18 @@
 import BaseProvider from "./BaseProvider.js";
 
-export const format = {
+const format = {
     JSON: "json",
     TEXT: "text",
     HTML: "html",
 };
 
-export const defaultOptions = {
-    format: format.HTML,
-    words: 30,
-    paragraphs: 5,
-};
+function getDefaultOptions() {
+    return {
+        format: format.HTML,
+        words: 30,
+        paragraphs: 5,
+    };
+}
 
 export default class Dinoipsum extends BaseProvider {
     constructor() {
@@ -18,7 +20,7 @@ export default class Dinoipsum extends BaseProvider {
             "dinoipsum",
             "Dinoipsum",
             "http://dinoipsum.herokuapp.com/api/",
-            defaultOptions
+            getDefaultOptions()
         );
     }
 

@@ -1,26 +1,28 @@
 import BaseProvider from "./BaseProvider.js";
 
-export const length = {
+const length = {
     SHORT: "short",
     MEDIUM: "medium",
     LONG: "long",
     VERYLONG: "verylong",
 };
 
-export const defaultOptions = {
-    paragraphs: 5,
-    length: length.SHORT,
-    link: false,
-    ul: false,
-    ol: false,
-    dl: false,
-    bq: false,
-    code: false,
-    headers: false,
-    allcaps: false,
-    prude: false,
-    plaintext: false,
-};
+function getDefaultOptions() {
+    return {
+        paragraphs: 5,
+        length: length.SHORT,
+        link: false,
+        ul: false,
+        ol: false,
+        dl: false,
+        bq: false,
+        code: false,
+        headers: false,
+        allcaps: false,
+        prude: false,
+        plaintext: false,
+    };
+}
 
 export default class Loripsum extends BaseProvider {
     constructor() {
@@ -28,7 +30,7 @@ export default class Loripsum extends BaseProvider {
             "loripsum",
             "Loripsum",
             "http://loripsum.net/api/",
-            defaultOptions
+            getDefaultOptions()
         );
     }
 

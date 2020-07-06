@@ -5,18 +5,6 @@ import Baconipsum from "./provider/Baconipsum.js";
 import Dinoipsum from "./provider/Dinoipsum.js";
 import LoremService from "./LoremService.js";
 
-const settings = SettingsStorage.getDefaultSettings();
-
-SettingsStorage.loadSettings().then((s) => {
-    Object.assign(settings, s);
-});
-
-const providers = [
-    new Loripsum(),
-    new Baconipsum(),
-    new Dinoipsum(),
-];
-
 function getCurrentText() {
     if (currentText) {
         return Promise.resolve(currentText);
@@ -42,17 +30,6 @@ function getProvider(providerId) {
     return providers.find(p => p.id === providerId);
 }
 
-let currentProvider = getProvider(settings.currentProviderId);
-
-let currentText = "";
-
-export default {
-    getProvider: getProvider,
-    getCurrentProvider: getCurrentProvider,
-    getCurrentText: getCurrentText,
-    getNextText: getNextText,
-};
-
 function sendCurrentText() {
     getCurrentText().then((text) => {
         browser.runtime.sendMessage({
@@ -71,6 +48,22 @@ function sendNextText() {
     });
 }
 
+const providers = [
+    new Loripsum(),
+    new Baconipsum(),
+    new Dinoipsum(),
+];
+
+let currentProvider = providers[0];
+
+let currentText = "";
+
+SettingsStorage.loadCurrentProvider().then((cpid) => {
+    if (cpid) {
+        currentProvider = getProvider(cpid);
+    }
+});
+
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
     switch (request.message) {
         case "providers":
@@ -82,13 +75,13 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
         case "providerChange":
             currentProvider = getProvider(request.newProviderId);
             BackgroundUtils.refreshContextMenu(currentProvider.name);
-            settings.currentProviderId = currentProvider.id;
-            SettingsStorage.storeSettings(settings);
+            SettingsStorage.storeCurrentProvider(request.newProviderId);
             sendNextText();
             break;
         case "providerOptionChange":
-            getProvider(request.option.provider)
-                .setOption(request.option.key, request.option.value);
+            const provider = getProvider(request.option.provider);
+            provider.setOption(request.option.key, request.option.value);
+            SettingsStorage.storeProviderOptions(provider);
             sendNextText();
             break;
         case "currentLoremText":
@@ -108,3 +101,8 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 BackgroundUtils.setupContextMenu();
+
+export default {
+    getCurrentProvider: getCurrentProvider,
+    getCurrentText: getCurrentText,
+};

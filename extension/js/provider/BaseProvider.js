@@ -1,7 +1,14 @@
-/**
- * @abstract
- */
-class BaseProvider {
+import SettingsStorage from "../SettingsStorage.js";
+
+export default class BaseProvider {
+
+    /**
+     * @constructor
+     * @param id
+     * @param name
+     * @param baseURL
+     * @param options
+     */
     constructor(id, name, baseURL, options) {
         if (this.constructor === BaseProvider) {
             throw new TypeError("Can not construct abstract class.");
@@ -13,16 +20,22 @@ class BaseProvider {
         this.name = name;
         this.baseURL = baseURL;
         this.options = options;
+        SettingsStorage.loadProviderOptions(this).then((options) => {
+            if (options) {
+                this.options = options;
+            }
+        });
     }
 
     /**
-     * Set option value.
+     * Sets option for provider.
      *
-     * @param key option key
-     * @param value option value
+     * @param key
+     * @param value
      */
     setOption(key, value) {
         this.options[key] = value;
+        SettingsStorage.storeProviderOptions(this);
     }
 
     /**
@@ -30,8 +43,6 @@ class BaseProvider {
      * Generate url for API call.
      */
     generateURL() {
-        throw new TypeError("Do not call abstract method from child.");
+        throw new TypeError("Do not call abstract method generateURL from child.");
     }
 }
-
-export default BaseProvider;

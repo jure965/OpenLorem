@@ -11,6 +11,9 @@ export default class LoremService {
     }
 
     static load(provider) {
-        return fetch(provider.generateURL());
+        if (provider) {
+            return fetch(provider.generateURL());
+        }
+        console.log("Provider is undefined");
     }
 }

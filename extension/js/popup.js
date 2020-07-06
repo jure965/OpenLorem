@@ -65,12 +65,6 @@ function requestCurrentLoremText() {
     });
 }
 
-function requestNextLoremText() {
-    return browser.runtime.sendMessage({
-        message: "nextLoremText",
-    });
-}
-
 function requestProviders() {
     return browser.runtime.sendMessage({
         message: "providers",
