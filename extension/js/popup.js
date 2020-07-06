@@ -4,11 +4,6 @@ document.getElementById("providerSelect").onchange = function () {
     requestProviderChange(this.value);
 };
 
-// Display <button> click listener
-document.getElementById("display").onclick = function () {
-    requestNextLoremText();
-};
-
 // overlay hiding
 for (let overlay of document.getElementsByClassName("overlay")) {
     overlay.onclick = function (e) {
