@@ -84,6 +84,7 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
             BackgroundUtils.refreshContextMenu(currentProvider.name);
             settings.currentProviderId = currentProvider.id;
             SettingsStorage.storeSettings(settings);
+            sendNextText();
             break;
         case "providerOptionChange":
             getProvider(request.option.provider)
