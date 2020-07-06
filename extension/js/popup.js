@@ -1,5 +1,5 @@
 // Provider <select> change listener
-document.getElementById("provider").onchange = function () {
+document.getElementById("providerSelect").onchange = function () {
     changeProvider(this.value);
     requestProviderChange(this.value);
 };
