@@ -45,6 +45,17 @@ function populateProviders(providers, currentProviderId) {
         option.value = provider.id;
         option.selected = provider.id === currentProviderId;
         providerSelect.appendChild(option);
+        const optionsElement = document.querySelector(`form[data-provider=${provider.id}]`);
+        Object.entries(provider.options).forEach((entry) => {
+            const optionElement = optionsElement.querySelector(`input[name=${entry[0]}]`);
+            if (optionElement) {
+                if (isCheckbox(optionElement)) {
+                    optionElement.checked = entry[1];
+                } else {
+                    optionElement.value = entry[1];
+                }
+            }
+        });
     });
     changeProvider(currentProviderId);
 }

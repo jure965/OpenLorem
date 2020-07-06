@@ -53,6 +53,24 @@ export default {
     getNextText: getNextText,
 };
 
+function sendCurrentText() {
+    getCurrentText().then((text) => {
+        browser.runtime.sendMessage({
+            message: "loremTextResponse",
+            text: text,
+        });
+    });
+}
+
+function sendNextText() {
+    getNextText().then((text) => {
+        browser.runtime.sendMessage({
+            message: "loremTextResponse",
+            text: text
+        });
+    });
+}
+
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
     switch (request.message) {
         case "providers":
@@ -70,25 +88,15 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
         case "providerOptionChange":
             getProvider(request.option.provider)
                 .setOption(request.option.key, request.option.value);
+            sendNextText();
             break;
         case "currentLoremText":
-            getCurrentText().then((text) => {
-                browser.runtime.sendMessage({
-                    message: "loremTextResponse",
-                    text: text,
-                });
-            });
+            sendCurrentText();
             break;
         case "nextLoremText":
-            getNextText().then((text) => {
-                browser.runtime.sendMessage({
-                    message: "loremTextResponse",
-                    text: text
-                });
-            });
+            sendNextText();
             break;
         case "currentProviderName":
-            console.log(currentProvider.name);
             sendResponse({
                 currentProviderName: currentProvider.name,
             });
