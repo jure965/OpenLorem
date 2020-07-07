@@ -2,6 +2,10 @@
 
 API client for Lorem Ipsum text providers as WebExtension.
 
+To enable insertion from context menu, enable it in extension settings.
+
+![context_menu](assets/openlorem_contextmenu.png)
+
 ## TODO
 
 - make beautiful icons/logo
