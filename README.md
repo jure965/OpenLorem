@@ -2,21 +2,35 @@
 
 API client for Lorem Ipsum text providers as WebExtension.
 
+![popup](assets/openlorem_popup.png)
+
+To enable insertion from context menu, enable it in extension settings.
+
+![context_menu](assets/openlorem_contextmenu.png)
+
+## Features
+
+* generate customized lorem ipsum text via providers
+* insert into DOM from context menu
+* supports iframes<sup>1</sup> (like tinyMCE)
+
+<sub>1 no nested iframes yet</sub>
+
+## Lorem Ipsum text providers
+
+- [Bacon Ipsum](https://baconipsum.com/json-api/) - smells like bbq
+- [Loripsum.net](http://loripsum.net/) - mostly vanilla
+- [Dino ipsum](http://dinoipsum.herokuapp.com/) - velociraptors and more
+
+Thank you for your awesome apps that make OpenLorem work!
+
 ## TODO
 
-- make beautiful icons/logo
-- add more providers
-- add copy to clipboard functionality
-- ~~add insert into page functionality~~ [#8](https://github.com/jure965/OpenLorem/issues/8)
-- ~~make beautiful UI~~ [[PR](https://github.com/jure965/OpenLorem/pull/1)]
-- fix UI on Chrome (padding around body)
-- Change UI/UX to [Photon Design System](http://design.firefox.com/photon/welcome.html) 
-
-## Current Lorem Ipsum providers
-
-- [Bacon Ipsum](https://baconipsum.com/json-api/)
-- [Loripsum.net](http://loripsum.net/)
-- [Dino ipsum](http://dinoipsum.herokuapp.com/)
+- beautiful icons and logo
+- more providers
+- copy to clipboard
+- offline mode
+- change UI/UX to [Photon Design System](http://design.firefox.com/photon/welcome.html) 
 
 ## Where do I get the extension?
 
@@ -34,7 +48,7 @@ with manifest.json file.
 
 ## How to contribute? 
 
-If you find an issue or a bug, please use [GitHub issues page](https://github.com/jure965/OpenLorem/issues)
+If you found a bug or have a feature request, please use [GitHub issues page](https://github.com/jure965/OpenLorem/issues)
 to report.
 
 If you like this web extension, consider leaving feedback on [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/openlorem).
