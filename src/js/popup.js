@@ -66,6 +66,13 @@ function requestCurrentLoremText() {
     });
 }
 
+function requestNextLoremText() {
+    // return browser.runtime.sendMessage({
+    return chrome.runtime.sendMessage({
+        message: "nextLoremText",
+    });
+}
+
 // function requestProviders() {
 function requestProviders(callback) {
     // return browser.runtime.sendMessage({
@@ -107,6 +114,10 @@ window.addEventListener("load", () => {
     requestProviders(() => {
         requestCurrentLoremText();
     });
+});
+
+document.querySelector("#generate").addEventListener("click", () => {
+    requestNextLoremText();
 });
 
 function onFormChange(e) {
