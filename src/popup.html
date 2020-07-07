@@ -8,210 +8,211 @@
 </head>
 
 <body>
-<div class="box box-small left">
-    <h1>OpenLorem</h1>
-    <div class="row form-group">
-        <label for="providerSelect" class="box box-small control-label">Provider</label>
-        <div class="box box-large">
-            <select id="providerSelect" class="form-control">
-            </select>
+<div class="main">
+    <div class="left">
+        <h1>OpenLorem</h1>
+        <div class="row form-group">
+            <label for="providerSelect" class="box box-small control-label">Provider</label>
+            <div class="box box-large">
+                <select id="providerSelect" class="form-control">
+                </select>
+            </div>
         </div>
-    </div>
-    <hr/>
+        <hr class="separator"/>
 
-    <!-- loripsum -->
-    <div class="provider hidden" id="loripsum">
-        <form id="loripsum-options" data-provider="loripsum">
-            <div class="row form-group">
-                <label for="loripsum-number" class="box box-small control-label">Quantity</label>
-                <div class="box box-large">
-                    <input id="loripsum-number" class="number form-control" type="text" value="5" name="paragraphs">
+        <!-- loripsum -->
+        <div class="provider hidden" id="loripsum">
+            <form id="loripsum-options" data-provider="loripsum">
+                <div class="row form-group">
+                    <label for="loripsum-number" class="box box-small control-label">Quantity</label>
+                    <div class="box box-large">
+                        <input id="loripsum-number" class="number form-control" type="text" value="5" name="paragraphs">
+                    </div>
                 </div>
-            </div>
-            <div class="row form-group">
-                <label for="loripsum-length" class="box box-large control-label">Paragraph length</label>
-                <div class="box box-small">
-                    <select id="loripsum-length" name="length" class="length form-control">
-                        <option value="short">short</option>
-                        <option value="medium">medium</option>
-                        <option value="long">long</option>
-                        <option value="verylong">very long</option>
-                    </select>
+                <div class="row form-group">
+                    <label for="loripsum-length" class="box box-large control-label">Paragraph length</label>
+                    <div class="box box-small">
+                        <select id="loripsum-length" name="length" class="length form-control">
+                            <option value="short">short</option>
+                            <option value="medium">medium</option>
+                            <option value="long">long</option>
+                            <option value="verylong">very long</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <input id="loripsum-decorate" type="checkbox" class="decorate" name="decorate" value="decorate">
-                <label for="loripsum-decorate">Add &lt;b&gt; and &lt;i&gt; tags</label>
-            </div>
-            <div class="form-group">
-                <input id="loripsum-link" type="checkbox" class="link" name="link" value="link">
-                <label for="loripsum-link">Add &lt;a&gt; tags</label><br>
-            </div>
-            <div class="form-group">
-                <input id="loripsum-ul" type="checkbox" class="ul" name="ul" value="ul">
-                <label for="loripsum-ul">Add unordered lists</label><br>
-            </div>
-            <div class="form-group">
-                <input id="loripsum-ol" type="checkbox" class="ol" name="ol" value="ol">
-                <label for="loripsum-ol">Add numbered lists</label><br>
-            </div>
-            <div class="form-group">
-                <input id="loripsum-dl" type="checkbox" class="dl" name="dl" value="dl">
-                <label for="loripsum-dl">Add description lists</label><br>
-            </div>
-            <div class="form-group">
-                <input id="loripsum-bq" type="checkbox" class="bq" name="bq" value="bq">
-                <label for="loripsum-bq">Add blockquotes</label><br>
-            </div>
-            <div class="form-group">
-                <input type="checkbox" class="code" name="code" value="code" id="code">
-                <label for="code">Add &lt;code&gt; and &lt;pre&gt; tags</label><br>
-            </div>
-            <div class="form-group">
-                <input id="loripsum-headers" type="checkbox" class="headers" name="headers" value="headers">
-                <label for="loripsum-headers">Add header tags</label><br>
-            </div>
-            <div class="form-group">
-                <input id="loripsum-allcaps" type="checkbox" class="allcaps" name="allcaps" value="allcaps">
-                <label for="loripsum-allcaps">Use ALL CAPS</label><br>
-            </div>
-            <div class="form-group">
-                <input id="loripsum-prude" type="checkbox" class="prude" name="prude" value="prude">
-                <label for="loripsum-prude">Prude version (family safe)</label><br>
-            </div>
-            <div class="form-group">
-                <input id="loripsum-plaintext" type="checkbox" class="plaintext" name="plaintext" value="plaintext">
-                <label for="loripsum-plaintext">Plain text (no HTML)</label><br>
-            </div>
-        </form>
-    </div>
+                <div class="form-group">
+                    <input id="loripsum-decorate" type="checkbox" class="decorate" name="decorate" value="decorate">
+                    <label for="loripsum-decorate">Add &lt;b&gt; and &lt;i&gt; tags</label>
+                </div>
+                <div class="form-group">
+                    <input id="loripsum-link" type="checkbox" class="link" name="link" value="link">
+                    <label for="loripsum-link">Add &lt;a&gt; tags</label><br>
+                </div>
+                <div class="form-group">
+                    <input id="loripsum-ul" type="checkbox" class="ul" name="ul" value="ul">
+                    <label for="loripsum-ul">Add unordered lists</label><br>
+                </div>
+                <div class="form-group">
+                    <input id="loripsum-ol" type="checkbox" class="ol" name="ol" value="ol">
+                    <label for="loripsum-ol">Add numbered lists</label><br>
+                </div>
+                <div class="form-group">
+                    <input id="loripsum-dl" type="checkbox" class="dl" name="dl" value="dl">
+                    <label for="loripsum-dl">Add description lists</label><br>
+                </div>
+                <div class="form-group">
+                    <input id="loripsum-bq" type="checkbox" class="bq" name="bq" value="bq">
+                    <label for="loripsum-bq">Add blockquotes</label><br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" class="code" name="code" value="code" id="code">
+                    <label for="code">Add &lt;code&gt; and &lt;pre&gt; tags</label><br>
+                </div>
+                <div class="form-group">
+                    <input id="loripsum-headers" type="checkbox" class="headers" name="headers" value="headers">
+                    <label for="loripsum-headers">Add header tags</label><br>
+                </div>
+                <div class="form-group">
+                    <input id="loripsum-allcaps" type="checkbox" class="allcaps" name="allcaps" value="allcaps">
+                    <label for="loripsum-allcaps">Use ALL CAPS</label><br>
+                </div>
+                <div class="form-group">
+                    <input id="loripsum-prude" type="checkbox" class="prude" name="prude" value="prude">
+                    <label for="loripsum-prude">Prude version (family safe)</label><br>
+                </div>
+                <div class="form-group">
+                    <input id="loripsum-plaintext" type="checkbox" class="plaintext" name="plaintext" value="plaintext">
+                    <label for="loripsum-plaintext">Plain text (no HTML)</label><br>
+                </div>
+            </form>
+        </div>
 
-    <!-- baconipsum -->
-    <div class="provider hidden" id="baconipsum">
-        <form id="baconipsum-options" data-provider="baconipsum">
-            <div class="row form-group">
-                <label for="baconipsum-type" class="box box-small control-label">Type</label>
-                <div class="box box-large">
-                    <select id="baconipsum-type" name="type" class="form-control">
-                        <option value="all-meat">All meat</option>
-                        <option value="meat-and-filler">Meat and filler</option>
-                    </select>
+        <!-- baconipsum -->
+        <div class="provider hidden" id="baconipsum">
+            <form id="baconipsum-options" data-provider="baconipsum">
+                <div class="row form-group">
+                    <label for="baconipsum-type" class="box box-small control-label">Type</label>
+                    <div class="box box-large">
+                        <select id="baconipsum-type" name="type" class="form-control">
+                            <option value="all-meat">All meat</option>
+                            <option value="meat-and-filler">Meat and filler</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="row form-group">
-                <label for="baconipsum-block-length" class="box box-small control-label">Quantity</label>
-                <div class="box box-large">
-                    <div class="row">
-                        <div class="box box-small">
-                            <input id="baconipsum-block-length" class="form-control number" type="text"
-                                   name="block-length" value="5">
-                        </div>
-                        <div class="box box-large">
-                            <label for="baconipsum-block-type" class="hidden"></label>
-                            <select id="baconipsum-block-type" name="block-type" class="form-control">
-                                <option value="paras">Paragraphs</option>
-                                <option value="sentences">Sentences</option>
-                            </select>
+                <div class="row form-group">
+                    <label for="baconipsum-block-length" class="box box-small control-label">Quantity</label>
+                    <div class="box box-large">
+                        <div class="row">
+                            <div class="box box-small">
+                                <input id="baconipsum-block-length" class="form-control number" type="text"
+                                       name="block-length" value="5">
+                            </div>
+                            <div class="box box-large">
+                                <label for="baconipsum-block-type" class="hidden"></label>
+                                <select id="baconipsum-block-type" name="block-type" class="form-control">
+                                    <option value="paras">Paragraphs</option>
+                                    <option value="sentences">Sentences</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row form-group">
-                <label for="baconipsum-format" class="box box-small control-label">Format</label>
-                <div class="box box-large">
-                    <select id="baconipsum-format" name="format" class="form-control">
-                        <option value="text">Text</option>
-                        <option value="json">JSON</option>
-                        <option value="html">HTML</option>
-                    </select>
+                <div class="row form-group">
+                    <label for="baconipsum-format" class="box box-small control-label">Format</label>
+                    <div class="box box-large">
+                        <select id="baconipsum-format" name="format" class="form-control">
+                            <option value="text">Text</option>
+                            <option value="json">JSON</option>
+                            <option value="html">HTML</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <p>
-                <input id="baconipsum-start-with-lorem" type="checkbox" class="start-with-lorem"
-                       name="start-with-lorem">
-                <label for="baconipsum-start-with-lorem">Start with lorem</label>
-            </p>
-        </form>
-    </div>
+                <p>
+                    <input id="baconipsum-start-with-lorem" type="checkbox" class="start-with-lorem"
+                           name="start-with-lorem">
+                    <label for="baconipsum-start-with-lorem">Start with lorem</label>
+                </p>
+            </form>
+        </div>
 
-    <!-- dino ipsum -->
-    <div class="provider hidden" id="dinoipsum">
-        <form id="dinoipsum-options" data-provider="dinoipsum">
-            <div class="row form-group">
-                <label for="dinoipsum-words" class="box box-medium control-label">Words</label>
-                <div class="box box-medium">
-                    <input id="dinoipsum-words" class="form-control number" type="text" name="words" value="15">
+        <!-- dino ipsum -->
+        <div class="provider hidden" id="dinoipsum">
+            <form id="dinoipsum-options" data-provider="dinoipsum">
+                <div class="row form-group">
+                    <label for="dinoipsum-words" class="box box-medium control-label">Words</label>
+                    <div class="box box-medium">
+                        <input id="dinoipsum-words" class="form-control number" type="text" name="words" value="15">
+                    </div>
                 </div>
-            </div>
-            <div class="row form-group">
-                <label for="dinoipsum-paragraphs" class="box box-medium control-label">Paragraphs</label>
-                <div class="box box-medium">
-                    <input id="dinoipsum-paragraphs" class="form-control number" type="text" name="paragraphs"
-                           value="3">
+                <div class="row form-group">
+                    <label for="dinoipsum-paragraphs" class="box box-medium control-label">Paragraphs</label>
+                    <div class="box box-medium">
+                        <input id="dinoipsum-paragraphs" class="form-control number" type="text" name="paragraphs"
+                               value="3">
+                    </div>
                 </div>
-            </div>
-            <div class="row form-group">
-                <label for="dinoipsum-format" class="box box-medium control-label">Format</label>
-                <div class="box box-medium">
-                    <select id="dinoipsum-format" name="format" class="form-control">
-                        <option value="text">Text</option>
-                        <option value="json">JSON</option>
-                        <option value="html">HTML</option>
-                    </select>
+                <div class="row form-group">
+                    <label for="dinoipsum-format" class="box box-medium control-label">Format</label>
+                    <div class="box box-medium">
+                        <select id="dinoipsum-format" name="format" class="form-control">
+                            <option value="text">Text</option>
+                            <option value="json">JSON</option>
+                            <option value="html">HTML</option>
+                        </select>
+                    </div>
                 </div>
+            </form>
+        </div>
+
+        <!-- add another provider here -->
+
+        <div class="text-center">
+            <button class="get btn btn-primary" id="generate" type="button">Generate</button>
+        </div>
+
+        <div id="info-button" data-target="overlay-info">?</div>
+        <div class="overlay hidden" id="overlay-info">
+            <div class="overlay-content">
+                <button class="close">×</button>
+                <h2>About OpenLorem</h2>
+                <p>
+                    This extension exists to support web developers by providing
+                    <a target="_blank" href="http://www.lipsum.com/">Lorem Ipsum filler text</a>.
+                </p>
+                <p>
+                    We are web developers, who found out that we need a simple filler content provider as web
+                    extension. We looked at various extensions and all were really old plugin style or unsupported by
+                    the latest browsers. So we decided to create our own extension in a relatively new and cross
+                    platform WebExtension standard.
+                </p>
+                <p>
+                    We hope you will find this extension useful. Report bugs, issues or feature requests on
+                    <a href="https://github.com/jure965/OpenLorem" target="_blank">GitHub page</a>.
+                </p>
+                <p>
+                    If you like this web extension, consider leaving feedback on
+                    <a href="https://addons.mozilla.org/firefox/addon/openlorem">addons.mozilla.org</a>.
+                </p>
+                <h4>Contributors</h4>
+                <ul>
+                    <li>
+                        <a target="_blank" href="https://github.com/jure965">jure965</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://github.com/BojanKogoj">BojanKogoj</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://github.com/jure965/OpenLorem/issues">You :)</a>
+                    </li>
+                </ul>
             </div>
-        </form>
-    </div>
-
-    <!-- add another provider here -->
-
-    <div class="text-center">
-        <button class="get btn btn-primary" id="generate" type="button">Generate</button>
-    </div>
-
-    <div id="info-button" data-target="overlay-info">?</div>
-    <div class="overlay hidden" id="overlay-info">
-        <div class="overlay-content">
-            <button class="close">×</button>
-            <h2>About OpenLorem</h2>
-            <p>
-                This extension exists to support web developers by providing
-                <a target="_blank" href="http://www.lipsum.com/">Lorem Ipsum filler text</a>.
-            </p>
-            <p>
-                We are web developers, who found out that we need a simple filler content provider as web
-                extension. We looked at various extensions and all were really old plugin style or unsupported by the
-                latest browsers. So we decided to create our own extension in a relatively new and cross platform
-                WebExtension standard.
-            </p>
-            <p>
-                We hope you will find this extension useful. Report bugs, issues or feature requests on
-                <a href="https://github.com/jure965/OpenLorem" target="_blank">GitHub page</a>.
-            </p>
-            <p>
-                If you like this web extension, consider leaving feedback on
-                <a href="https://addons.mozilla.org/firefox/addon/openlorem">addons.mozilla.org</a>.
-            </p>
-            <h4>Contributors</h4>
-            <ul>
-                <li>
-                    <a target="_blank" href="https://github.com/jure965">jure965</a>
-                </li>
-                <li>
-                    <a target="_blank" href="https://github.com/BojanKogoj">BojanKogoj</a>
-                </li>
-                <li>
-                    <a target="_blank" href="https://github.com/jure965/OpenLorem/issues">You :)</a>
-                </li>
-            </ul>
         </div>
     </div>
+    <div class="right">
+        <label for="output" class="hidden"></label>
+        <textarea id="output" class="output" spellcheck="false"></textarea>
+    </div>
 </div>
-<div class="box box-large right no-gutter">
-    <label for="output" class="hidden"></label>
-    <textarea id="output" class="output" spellcheck="false"></textarea>
-</div>
-
 <script type="module" src="js/popup.js"></script>
 
 </body>
