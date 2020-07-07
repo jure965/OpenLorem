@@ -18,7 +18,8 @@ window.addEventListener("load", () => {
     });
 });
 
-browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+// browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     switch (request.message) {
         case "fillWithLoremText":
             if (clickedElement != null) {

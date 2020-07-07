@@ -32,7 +32,8 @@ function getProvider(providerId) {
 
 function sendCurrentText() {
     getCurrentText().then((text) => {
-        return browser.runtime.sendMessage({
+        // return browser.runtime.sendMessage({
+        return chrome.runtime.sendMessage({
             message: "loremTextResponse",
             text: text,
         });
@@ -41,7 +42,8 @@ function sendCurrentText() {
 
 function sendNextText() {
     getNextText().then((text) => {
-        return browser.runtime.sendMessage({
+        // return browser.runtime.sendMessage({
+        return chrome.runtime.sendMessage({
             message: "loremTextResponse",
             text: text
         });
@@ -58,13 +60,15 @@ let currentProvider = providers[0];
 
 let currentText = "";
 
-SettingsStorage.loadCurrentProvider().then((cpid) => {
+// SettingsStorage.loadCurrentProvider().then((cpid) => {
+SettingsStorage.loadCurrentProvider((cpid) => {
     if (cpid) {
         currentProvider = getProvider(cpid);
     }
 });
 
-browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+// browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.hasOwnProperty("message")) {
         switch (request.message) {
             case "providers":
@@ -106,4 +110,5 @@ ContextMenu.setupContextMenu();
 export default {
     getCurrentProvider: getCurrentProvider,
     getCurrentText: getCurrentText,
+    getNextText: getNextText,
 };

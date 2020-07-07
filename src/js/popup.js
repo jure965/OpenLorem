@@ -60,28 +60,38 @@ function setLoremText(text) {
 }
 
 function requestCurrentLoremText() {
-    return browser.runtime.sendMessage({
+    // return browser.runtime.sendMessage({
+    return chrome.runtime.sendMessage({
         message: "currentLoremText",
     });
 }
 
-function requestProviders() {
-    return browser.runtime.sendMessage({
+// function requestProviders() {
+function requestProviders(callback) {
+    // return browser.runtime.sendMessage({
+    return chrome.runtime.sendMessage({
         message: "providers",
-    }).then((response) => {
+    // }).then((response) => {
+    }, (response) => {
         populateProviders(response.providers, response.currentProviderId);
+        // added for chrome compatibility
+        if (callback && typeof callback === "function") {
+            callback();
+        }
     });
 }
 
 function requestProviderChange(newProviderId) {
-    return browser.runtime.sendMessage({
+    // return browser.runtime.sendMessage({
+    return chrome.runtime.sendMessage({
         message: "providerChange",
         newProviderId: newProviderId,
     });
 }
 
 function requestProviderOptionChange(option) {
-    return browser.runtime.sendMessage({
+    // return browser.runtime.sendMessage({
+    return chrome.runtime.sendMessage({
         message: "providerOptionChange",
         option: option,
     });
@@ -93,7 +103,8 @@ function isCheckbox(element) {
 
 // load current lorem text on popup open
 window.addEventListener("load", () => {
-    requestProviders().then(() => {
+    // requestProviders().then(() => {
+    requestProviders(() => {
         requestCurrentLoremText();
     });
 });
@@ -110,7 +121,8 @@ document.querySelectorAll("form").forEach((element) => {
     element.addEventListener("change", onFormChange);
 });
 
-browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+// browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     switch (request.message) {
         case "loremTextResponse":
             setLoremText(request.text);

@@ -5,14 +5,17 @@ export default class ContextMenu {
      * Remove and create context menu.
      */
     static refreshContextMenu() {
-        browser.storage.local.get("contextMenu").then((item) => {
+        // browser.storage.local.get("contextMenu").then((item) => {
+        chrome.storage.local.get("contextMenu", (item) => {
             let providerName = null;
             if (item.contextMenu) {
                 providerName = background.getCurrentProvider().name;
             }
-            browser.menus.removeAll().then(() => {
+            // browser.menus.removeAll().then(() => {
+            chrome.contextMenus.removeAll(() => {
                 if (providerName) {
-                    browser.menus.create({
+                    // browser.menus.create({
+                    chrome.contextMenus.create({
                         id: "insertLoremText",
                         title: ["Insert", providerName].join(" "),
                         contexts: ["all"]
@@ -27,11 +30,13 @@ export default class ContextMenu {
      * ID of the menu item that was clicked.
      */
     static setupContextMenu() {
-        browser.menus.onClicked.addListener((request, tab) => {
+        // browser.menus.onClicked.addListener((request, tab) => {
+        chrome.contextMenus.onClicked.addListener((request, tab) => {
             switch (request.menuItemId) {
                 case "insertLoremText":
-                    background.getCurrentText().then((currentText) => {
-                        return browser.tabs.sendMessage(tab.id, {
+                    background.getNextText().then((currentText) => {
+                        // return browser.tabs.sendMessage(tab.id, {
+                        return chrome.tabs.sendMessage(tab.id, {
                             message: "fillWithLoremText",
                             text: currentText,
                         });
@@ -42,7 +47,8 @@ export default class ContextMenu {
             }
         });
         this.refreshContextMenu();
-        browser.storage.onChanged.addListener((changes, areaName) => {
+        // browser.storage.onChanged.addListener((changes, areaName) => {
+        chrome.storage.onChanged.addListener((changes, areaName) => {
             if (areaName === "local" && changes.hasOwnProperty("contextMenu")) {
                 this.refreshContextMenu();
             }

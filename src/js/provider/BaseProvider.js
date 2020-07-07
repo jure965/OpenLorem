@@ -20,7 +20,8 @@ export default class BaseProvider {
         this.name = name;
         this.baseURL = baseURL;
         this.options = options;
-        SettingsStorage.loadProviderOptions(this).then((options) => {
+        // SettingsStorage.loadProviderOptions(this).then((options) => {
+        SettingsStorage.loadProviderOptions(this, (options) => {
             if (options) {
                 this.options = options;
             }
