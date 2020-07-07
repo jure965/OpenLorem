@@ -48,7 +48,7 @@ with manifest.json file.
 
 ## How to contribute? 
 
-If you find an issue or a bug, please use [GitHub issues page](https://github.com/jure965/OpenLorem/issues)
+If you found a bug or have a feature request, please use [GitHub issues page](https://github.com/jure965/OpenLorem/issues)
 to report.
 
 If you like this web extension, consider leaving feedback on [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/openlorem).
