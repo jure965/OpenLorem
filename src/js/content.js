@@ -18,12 +18,20 @@ window.addEventListener("load", () => {
     });
 });
 
+function isTextbox(element) {
+    return (element || {}).nodeName.toLowerCase() === "input" && (element || {}).type.toLowerCase() === "text";
+}
+
 // browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     switch (request.message) {
         case "fillWithLoremText":
             if (clickedElement != null) {
-                clickedElement.innerHTML = request.text;
+                if (isTextbox(clickedElement)) {
+                    clickedElement.value = request.text;
+                } else {
+                    clickedElement.innerHTML = request.text;
+                }
                 sendResponse({});
             } else {
                 sendResponse({
