@@ -26,17 +26,12 @@ function isTextbox(element) {
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     switch (request.message) {
         case "fillWithLoremText":
-            if (clickedElement != null) {
+            if (clickedElement != null && document.hasFocus()) {
                 if (isTextbox(clickedElement)) {
                     clickedElement.value = request.text;
                 } else {
                     clickedElement.innerHTML = request.text;
                 }
-                sendResponse({});
-            } else {
-                sendResponse({
-                    error: "clickedElement is null",
-                });
             }
             break;
         default:
