@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "OpenLorem",
-  "version": "0.5",
+  "version": "0.6",
   "description": "API client for Lorem Ipsum filler text as WebExtension.",
   "author": "Jure Vengušt",
   "homepage_url": "https://github.com/jure965/OpenLorem",
