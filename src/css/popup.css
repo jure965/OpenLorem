@@ -81,6 +81,7 @@ html, body {
     background-color: #0096dd;
     border: 1px solid #0096dd;
     color: #fff;
+    margin-bottom: 8px;
 }
 
 .btn.btn-primary:hover {
