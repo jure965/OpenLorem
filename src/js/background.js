@@ -45,7 +45,7 @@ function sendNextText() {
         // return browser.runtime.sendMessage({
         return chrome.runtime.sendMessage({
             message: "loremTextResponse",
-            text: text
+            text: text,
         });
     });
 }
