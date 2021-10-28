@@ -19,7 +19,7 @@ export default class Dinoipsum extends BaseProvider {
         super(
             "dinoipsum",
             "Dinoipsum",
-            "http://dinoipsum.herokuapp.com/api/",
+            "https://dinoipsum.com/api/",
             getDefaultOptions()
         );
     }

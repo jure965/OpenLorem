@@ -19,8 +19,8 @@ To enable insertion from context menu, enable it in extension settings.
 ## Lorem Ipsum text providers
 
 - [Bacon Ipsum](https://baconipsum.com/json-api/) - smells like bbq
-- [Loripsum.net](http://loripsum.net/) - mostly vanilla
-- [Dino ipsum](http://dinoipsum.herokuapp.com/) - velociraptors and more
+- [Loripsum.net](https://loripsum.net/) - mostly vanilla
+- [Dino ipsum](https://dinoipsum.com/) - velociraptors and more
 
 Thank you for your awesome apps that make OpenLorem work!
 

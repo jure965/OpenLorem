@@ -19,8 +19,8 @@
   },
   "permissions": [
     "https://baconipsum.com/api/*",
-    "http://loripsum.net/api/*",
-    "http://dinoipsum.herokuapp.com/api/*",
+    "https://loripsum.net/api/*",
+    "https://dinoipsum.com/api/*",
     "webRequest",
     "contextMenus",
     "storage",

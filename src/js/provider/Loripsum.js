@@ -29,7 +29,7 @@ export default class Loripsum extends BaseProvider {
         super(
             "loripsum",
             "Loripsum",
-            "http://loripsum.net/api/",
+            "https://loripsum.net/api/",
             getDefaultOptions()
         );
     }
