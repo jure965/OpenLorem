@@ -73,6 +73,13 @@ function requestNextLoremText() {
     });
 }
 
+function copyLoremText() {
+    const output = document.querySelector("#output");
+    navigator.clipboard.writeText(output.value).then(() => {
+        document.querySelector("#copy").innerText = "Copied";
+    });
+}
+
 // function requestProviders() {
 function requestProviders(callback) {
     // return browser.runtime.sendMessage({
@@ -118,6 +125,10 @@ window.addEventListener("load", () => {
 
 document.querySelector("#generate").addEventListener("click", () => {
     requestNextLoremText();
+});
+
+document.querySelector("#copy").addEventListener("click", () => {
+    copyLoremText();
 });
 
 function onFormChange(e) {
