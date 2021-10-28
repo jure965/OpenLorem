@@ -49,6 +49,12 @@ function populateProviders(providers, currentProviderId) {
                 } else {
                     optionElement.value = entry[1];
                 }
+            } else {
+                // look for <select> element
+                const selectElement = optionsElement.querySelector(`select[name=${entry[0]}]`);
+                if (selectElement) {
+                    selectElement.value = entry[1];
+                }
             }
         });
     });
