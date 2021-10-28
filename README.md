@@ -59,4 +59,5 @@ You have your own Lorem Ipsum API? Let us know, and we will add it.
 
 * [jure965](https://github.com/jure965/)
 * [BojanKogoj](https://github.com/BojanKogoj/)
+* [JoseeWouters](https://github.com/JoseeWouters)
 * [You :)](https://github.com/jure965/OpenLorem/issues)
