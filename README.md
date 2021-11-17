@@ -28,7 +28,6 @@ Thank you for your awesome apps that make OpenLorem work!
 
 - beautiful icons and logo
 - more providers
-- copy to clipboard
 - offline mode
 - change UI/UX to [Photon Design System](http://design.firefox.com/photon/welcome.html) 
 
