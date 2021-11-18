@@ -30,7 +30,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                 if (isTextbox(clickedElement)) {
                     clickedElement.value = request.text;
                 } else {
-                    clickedElement.innerHTML = request.text;
+                    let loremText = new DOMParser().parseFromString(request.text, 'text/html').body.childNodes;
+                    clickedElement.parentNode.replaceChildren(...loremText);
                 }
             }
             break;
