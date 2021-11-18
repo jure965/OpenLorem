@@ -303,6 +303,6 @@ label.hidden {
     margin-bottom: 5px;
 }
 
-#contributors-list {
+.contributors-list {
     list-style-type: none;
 }
