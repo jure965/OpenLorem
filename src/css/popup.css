@@ -302,3 +302,7 @@ label.hidden {
 .separator {
     margin-bottom: 5px;
 }
+
+.contributors-list {
+    list-style-type: none;
+}
